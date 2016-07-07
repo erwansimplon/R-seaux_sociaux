@@ -60,14 +60,14 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     <div id="recherche">
         <div id="accueil">
             <a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
-                            $URL_NEWS = "user.php?id=".$hachage;
-                             print $URL_NEWS;?>"><?php
+                $URL_NEWS = "user.php?id=".$hachage;
+                print $URL_NEWS;?>"><?php
           //Si le membre possède une image, on l'affiche
 
-					if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-					echo '<img class="avatar" style="float:left;" alt="avatar" 
-					src="../auth-photos/'.$id.$image.'images.jpg'.'"/>';
-					}
+		if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+		echo '<img class="avatar" style="float:left;" alt="avatar" 
+		src="../auth-photos/'.$id.$image.'images.jpg'.'"/>';
+		}
 
             ?></a>
 
