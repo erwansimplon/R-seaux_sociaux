@@ -1,5 +1,5 @@
 
-slide = new Array('../auth-photos/profil/'$id.$image.$i.'.jpg')
+slide = new Array('../auth-photos/profil/'.$id.$image.'images.jpg)
 
 //changement manuel
 slide_manuel = 0
