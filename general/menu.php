@@ -1,7 +1,7 @@
 
-    <ul id="menu">
+<ul id="menu">
 
-      <li><a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+    <li><a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
                       $URL_NEWS = "../general/user.php?id=".$hachage;
                        print $URL_NEWS;?>">Accueil</a></li>
 
