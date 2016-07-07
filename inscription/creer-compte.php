@@ -87,11 +87,11 @@ if(isset($_POST['Envoyer'])){
             echo '<div id="erreur">Cet email est déjà utilisé!</div>'; return false;
         }
         //tout est ok
-		else{
-		//date du jour
-		$date=date("Y-m-d");
-			// on enregistre les données
-			$insert = mysql_query("INSERT INTO LOGIN
+	else{
+	//date du jour
+	$date=date("Y-m-d");
+	// on enregistre les données
+	$insert = mysql_query("INSERT INTO LOGIN
         VALUES ( '', '".mysql_real_escape_string(stripcslashes(utf8_decode($_POST['pseudo'])))."',
          '".mysql_real_escape_string(stripcslashes(utf8_decode($_POST['motdepass'])))."',
          '".mysql_real_escape_string(stripcslashes($_POST['email']))."',
@@ -99,29 +99,29 @@ if(isset($_POST['Envoyer'])){
          '".mysql_real_escape_string('0')."',
          '".mysql_real_escape_string($date)."' ) ");
 			//Si il y a une erreur
-			if (!$insert) {
+	if (!$insert) {
 				die('Requête invalide : ' . mysql_error());
 			}
-		//pas d'erreur d'enregistrement, on envoie un mail de confirmation
-    else {
-				//email de celui qui envoie
-				$webmaster = $email_webmaster;
-				//email de celui qui reçoit
-				$a_qui_j_envoie = $_POST['email'];
-				//sujet
-				$subject = "Valider votre inscription";
-				//message
-				$msg  = "Bonjour ".stripcslashes($_POST['pseudo'])."<br/><br/>";
-				$msg .= "Veuillez confirmer votre inscription en cliquant sur le lien ci-joint <a href=\"http://".$_SERVER['HTTP_HOST']."confirmation-inscription.php?pseudo=".stripcslashes($_POST['pseudo'])."&email=".$_POST['email']."\">Confirmation</a><br/>";
-				$msg .= "Cordialement";
-				//permet de savoir qui envoie le mail et d'y répondre
-				$mailheaders = "From: $webmaster\n";
-				$mailheaders .= "MIME-version: 1.0\n";
-				$mailheaders .= "Content-type: text/html; charset= UTF-8\n";
-				//on envoie l'email
-				mail($a_qui_j_envoie, $subject, $msg, $mailheaders);
+	//pas d'erreur d'enregistrement, on envoie un mail de confirmation
+    	else {
+		//email de celui qui envoie
+		$webmaster = $email_webmaster;
+		//email de celui qui reçoit
+		$a_qui_j_envoie = $_POST['email'];
+		//sujet
+		$subject = "Valider votre inscription";
+		//message
+		$msg  = "Bonjour ".stripcslashes($_POST['pseudo'])."<br/><br/>";
+		$msg .= "Veuillez confirmer votre inscription en cliquant sur le lien ci-joint <a href=\"http://".$_SERVER['HTTP_HOST']."confirmation-inscription.php?pseudo=".stripcslashes($_POST['pseudo'])."&email=".$_POST['email']."\">Confirmation</a><br/>";
+		$msg .= "Cordialement";
+		//permet de savoir qui envoie le mail et d'y répondre
+		$mailheaders = "From: $webmaster\n";
+		$mailheaders .= "MIME-version: 1.0\n";
+		$mailheaders .= "Content-type: text/html; charset= UTF-8\n";
+		//on envoie l'email
+		mail($a_qui_j_envoie, $subject, $msg, $mailheaders);
 
-            echo '<div id="ok">Inscription réussit.</div>
+       	echo '<div id="ok">Inscription réussit.</div>
                  <script type="text/javascript">
                      window.setTimeout("location=(\'../index.php?conf=ok\');",30)
                  </script>';
