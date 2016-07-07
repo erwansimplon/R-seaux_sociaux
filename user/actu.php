@@ -34,7 +34,6 @@
 	</head>
 
 	<body>
-
 		<ol>
 			<li>
 			<!-- formulaire qui permet a l'utilisateur de poster les message -->
@@ -124,7 +123,6 @@ $comment=$rowsmall['comments'];
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 <?php 
