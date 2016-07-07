@@ -12,7 +12,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     AND pass='".mysql_real_escape_string($_SESSION['pass'])."'
     AND valide='".mysql_real_escape_string(1)."'");
     $result = mysql_fetch_assoc($affiche);
-    //http://php.net/manual/fr/function.extract.php
+    
     extract($result);
     //si le membre est banni en cours de session, on l’éjecte
     if($valide==2){
@@ -34,7 +34,8 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
             <title>Modification de votre profil</title>
             <script type="text/javascript">
                 <!--
-                /*     Fonction permettant d'afficher le message de chargement lors de l'upload de l'image.     Cette fonction permet également de cacher certains éléments pendant le temps de chargement.     */
+                /*     Fonction permettant d'afficher le message de chargement lors de l'upload de l'image.     
+                Cette fonction permet également de cacher certains éléments pendant le temps de chargement.     */
                 function Verif_attente(id_attente)
                 {
                     var id_attente = document.getElementById(id_attente);
@@ -117,6 +118,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
             <input name="Effacer" value="Effacer" type="reset" />
     </form>
     <br/>
+    
     <?php
     if(isset($_POST['Envoyer'])){
         //si pseudo vide
@@ -180,6 +182,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
         }
     }
     ?>
+    
     <h2>Télécharger une image</h2>
 
      <div class="info">Image au format « jpg » uniquement.
@@ -201,7 +204,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
      //dossier d'upload
      $dossier_upload = '../auth-photos/';
      if(isset($_POST['photo'])){
-         /*echo '<pre>';     print_r($_FILES);     echo '</pre>';*/
+         
          if(isset($_FILES['uploadFile']) && $_FILES['uploadFile']['error'] == 0) {
              unset($erreur);
              //extensions autorisées
