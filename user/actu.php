@@ -4,6 +4,7 @@
 		<head>
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 				<link rel="stylesheet" href="../css/actu-style.css" type="text/css" media="screen"/>
+				<!-- appel de ajax -->
 				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 				<script type="text/javascript">
 							$(function()
@@ -29,12 +30,14 @@
 							});
 							});
 				</script>
+				<!-- du script ajax -->
 			</head>
 
 <body>
 
 <ol>
 		<li>
+			<!-- formulaire qui permet a l'utilisateur de poster les message -->
 				<form action="../user/savemessage.php" method="post">
 						<textarea class="editbox" cols="23" rows="3" name="message"></textarea><br />
 						<input id="POST" name="POST" type="submit" value="POST" />
@@ -42,6 +45,7 @@
 		</li>
 
 <?php
+// va cherche le fichier connection 
 include("../bdd/db.php");
 
 $msql=mysql_query("select * from msg order by msg_id desc");
