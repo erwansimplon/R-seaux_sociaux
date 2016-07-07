@@ -1,1 +1,1 @@
-# R-seaux_sociaux
+# Réseau social fait en php / jquery / ajax / html et css avec une base de donnée phpmyadmin
