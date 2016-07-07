@@ -18,20 +18,20 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
     </head>
 
 <body>
-
-		<div id="centre">
-
-			<h1>Authentification</h1>
+<!-- affiche le cadre -->
+	<div id="centre">
+<!-- formulaire pour s'authentifier -->
+		<h1>Authentification</h1>
           <form method="POST" action="index.php">
               <label for="pseudo">Pseudo : </label>
                   <input type="text" name="pseudo" maxlength="20"
                   value="<?php if (!empty($_POST["pseudo"]))
-                      { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); } ?>" />
+                      { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); } ?>" /><!-- champs pseudo protéger -->
                       <br/>
               <label for="pass">Mot de Passe : </label>
                   <input type="password" name="motdepass" maxlength="20"
                   value="<?php if (!empty($_POST["motdepass"]))
-                      { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); } ?>" />
+                      { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); } ?>" /><!-- champs pseudo protéger -->
                       <br/>
               <label for="action">Action : </label>
                   <input type="submit" name="Envoyer" value="Envoyer" />
@@ -39,19 +39,19 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
           </form>
 
 <br/>
-
+<!-- affiche les liens pour basculer vers l'inscription et le mot de passe perdu --> 
       <p id="lien"><a href="index.php">Connexion</a> |
         <a href="../inscription/creer-compte.php">Créer un compte</a> |
         <a href="../inscription/identifiant-perdu.php">Identifiant perdu?</a></p>
-
-
+<!-- fin -->
+<!-- message si le javascript tourne pas -->
 		<noscript>
       <div id="erreur">
         <b>Votre navigateur ne prend pas en charge JavaScript!</b>
            Veuillez activer JavaScript afin de profiter pleinement du site.
       </div>
     </noscript>
-
+<!-- fin -->
     </div>
 
       <?php
@@ -69,7 +69,7 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
           }
       //Si tout est bon, on se connecte à la base de données et on vérifie que
       //l'utilisateur existe
-      //c'est ok
+      //si ok 
       else{
           include("bdd/connexion_bdd.php");
           connexion_bd();
@@ -105,7 +105,7 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
                 //on créer la session
                 $_SESSION['pseudo'] = utf8_decode($_POST['pseudo']);
                 $_SESSION['pass'] = utf8_decode($_POST['motdepass']);
-                //on redirige
+                //on redirige avec une url crypther
                 $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
                 $URL_NEWS = "../general/user.php?id=".$hachage;
                 header("location:".$URL_NEWS);
@@ -115,7 +115,7 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
         close_bd();
     }
 }
-//nous n'avons pas fermé le code PHP et ceci pour une bonne raison
+//Formation des URL pour envoyer des paramètres
 if(isset($_GET['conf']) && $_GET['conf']=="ok"){
 echo '<div id="ok">Inscription réussit. Un message vous a été envoyé sur votre boîte email.
 Merci de cliquer sur le lien présent dans celui-ci pour valider votre inscription.</div>';
