@@ -1,88 +1,88 @@
 body{
-background:#F1F1F1;
-font-size: 11px;
+	background:#F1F1F1;
+	font-size: 11px;
 }
 
 h1{
-text-align:center;
-color:#CCC;
+	text-align:center;
+	color:#CCC;
 }
 
 label,input{
-display: block;
-width: 150px;
-float: left;
-margin-bottom: 10px;
+	display: block;
+	width: 150px;
+	float: left;
+	margin-bottom: 10px;
 }
 
 input[type=submit],input[type=reset]{
-width: 70px;
-margin-right:5px;
+	width: 70px;
+	margin-right:5px;
 }
 
 label{
-text-align: right;
-width: 100px;
-padding-right: 20px;
+	text-align: right;
+	width: 100px;
+	padding-right: 20px;
 }
 
 br {
-clear: left;
+	clear: left;
 }
 
 #centre {
-background:white;
-position : absolute;
-left : 50%;
-top : 50%;
-border : 1px solid #aaa;
-width : 400px;
-height : 300px;
-margin-top : -150px;
-margin-left: -200px;
-border-radius : 5px;
--webkit-border-radius : 5px;
--moz-border-radius : 5px;
-padding:5px;
-text-align:center;
-box-shadow: 8px 8px 12px #aaa;
--moz-box-shadow: 8px 8px 12px #aaa;
--webkit-box-shadow: 8px 8px 12px #aaa;
-color:#aaa;
+	background:white;
+	position : absolute;
+	left : 50%;
+	top : 50%;
+	border : 1px solid #aaa;
+	width : 400px;
+	height : 300px;
+	margin-top : -150px;
+	margin-left: -200px;
+	border-radius : 5px;
+	-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	padding:5px;
+	text-align:center;
+	box-shadow: 8px 8px 12px #aaa;
+	-moz-box-shadow: 8px 8px 12px #aaa;
+	-webkit-box-shadow: 8px 8px 12px #aaa;
+	color:#aaa;
 }
 
 #centre a{
-color:black;
-text-decoration:none;
+	color:black;
+	text-decoration:none;
 }
 
 #erreur{
-background:#F11A57;
-color : #FFF;
-border : 1px solid #F11A57;
-padding : 5px;
-margin:5px;
-border-radius : 5px;
--webkit-border-radius : 5px;
--moz-border-radius : 5px;
-text-align:left;
+	background:#F11A57;
+	color : #FFF;
+	border : 1px solid #F11A57;
+	padding : 5px;
+	margin:5px;
+	border-radius : 5px;
+	-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	text-align:left;
 }
 
 #ok{
-background:#D6EFA1;
-color:#4F7307;
-border : 1px solid #C1D779;
-padding : 5px;
-margin:5px;
-border-radius : 5px;
--webkit-border-radius : 5px;
--moz-border-radius : 5px;
-text-align:left;
+	background:#D6EFA1;
+	color:#4F7307;
+	border : 1px solid #C1D779;
+	padding : 5px;
+	margin:5px;
+	border-radius : 5px;
+	-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	text-align:left;
 }
 
 #lien{
-position:absolute;
-left: 20%;
-right: 20%;
-bottom: 0px;
+	position:absolute;
+	left: 20%;
+	right: 20%;
+	bottom: 0px;
 }
