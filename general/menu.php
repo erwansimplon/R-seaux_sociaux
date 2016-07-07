@@ -1,9 +1,10 @@
 
 <ul id="menu">
 
-    <li><a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+        <li><a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
                       $URL_NEWS = "../general/user.php?id=".$hachage;
-                       print $URL_NEWS;?>">Accueil</a></li>
+                      print $URL_NEWS;?>">Accueil</a>
+        </li>
 
       <li>Profil
 
@@ -13,4 +14,4 @@
         </ul>
 
       <li><a href="../index.php?dec=close">Déconnexion</a></li>
-    </ul>
+</ul>
