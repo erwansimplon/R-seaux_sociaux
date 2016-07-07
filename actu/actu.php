@@ -112,7 +112,7 @@ $sql=mysql_query("select * from comments where msg_id_fk='$id_msg' order by com_
 $comment_count=mysql_num_rows($sql);
 
 
-/* permet de voir que 2 commentaires sous les messsage et on doit cliquer sur la div class="comment_ui" 
+/* permet de voir que 2 commentaires sous les messsage et on doit cliquer sur la div class="comment_ui"  
 pour afficher tous les commentaires */
 
 if($comment_count>2)
