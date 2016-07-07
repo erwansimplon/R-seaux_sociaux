@@ -1,3 +1,6 @@
+/* jquery en cours de modification pour permettre d'afficher tous les amis et 
+de pouvoir ouvrir les conversation quand on clic sur le pseudo actuellements réussi mais pas optimiser */
+
 $(document).ready(function(){
 
 	$('.chat_head').click(function(){
@@ -49,10 +52,11 @@ $(document).ready(function(){
 	});
 
 	$('textarea').keypress(
-    function(e){
-        if (e.keyCode == 13) {
-            e.preventDefault();
-            var msg = $(this).val();
+		
+    	function(e){
+        	if (e.keyCode == 13) {
+            	e.preventDefault();
+            	var msg = $(this).val();
 			$(this).val('');
 			if(msg!='')
 			$('<div class="msg_b">'+msg+'</div>').insertBefore('.msg_push');
