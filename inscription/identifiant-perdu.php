@@ -11,18 +11,27 @@
 <div id="centre">
 <h1>Identifiant perdu</h1>
   <form method="POST" action="#">
-  <label for="email">Email : </label><input type="text" name="email" maxlength="50" value="<?php if (!empty($_POST["email"])) { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); } ?>" /><br/>
+  <label for="email">Email : </label><input type="text" name="email" maxlength="50" 
+  value="<?php if (!empty($_POST["email"])) { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); } ?>" /><br/>
   <label for="action">Action : </label><input type="submit" name="Envoyer" value="Envoyer" />
   <input name="Effacer" value="Effacer" type="reset" />
   </form>
   <br/>
-	<p id="lien"><a href="../index.php">Connexion</a> | <a href="creer-compte.php">Créer un compte</a> | <a href="identifiant-perdu.php">Identifiant perdu?</a></p>
+	<p id="lien"><a href="../index.php">Connexion</a> | 
+	<a href="creer-compte.php">Créer un compte</a> | 
+	<a href="identifiant-perdu.php">Identifiant perdu?</a></p>
 	</div>
 
-	<noscript><div id="erreur"><b>Votre navigateur ne prend pas en charge JavaScript!</b> Veuillez activer JavaScript afin de profiter pleinement du site.</div></noscript>
+	<noscript>
+		<div id="erreur">
+			<b>Votre navigateur ne prend pas en charge JavaScript!</b> 
+			Veuillez activer JavaScript afin de profiter pleinement du site.
+		</div>
+	</noscript>
 
   <?php
-  //on vérifie le mail saisi par l'utilisateur puis on va chercher en base de données le pseudo et mots de passe correspondant à l'email et on envoie le tout par email.
+  //on vérifie le mail saisi par l'utilisateur puis on va chercher en base de données le pseudo et mots de passe correspondant 
+  //à l'email et on envoie le tout par email.
   if(isset($_POST['Envoyer'])){
       //si l'email vide
       if(empty($_POST['email'])){
@@ -38,7 +47,8 @@
           include("../bdd/connexion_bdd.php");
           connexion_bd();
           //On sélectionne les données
-          $index = mysql_query("SELECT pseudo,pass FROM LOGIN WHERE email='".mysql_real_escape_string(stripcslashes($_POST['email']))."'");
+          $index = mysql_query("SELECT pseudo,pass FROM LOGIN WHERE email='"
+          .mysql_real_escape_string(stripcslashes($_POST['email']))."'");
           //si pas de résultat
           if(mysql_num_rows($index) == 0)
           {
@@ -56,7 +66,9 @@
                   $subject = "Vos identifiants";
                   //message
                   $msg  = "Bonjour ".$result['pseudo']."<br/><br/>";
-                  $msg .= "Vous avez demandé à recevoir vos identifiants :<br/>Pseudo : ".htmlspecialchars($result['pseudo'])."<br/>Mot de passe : ".$result['pass']."<br/><br/>";
+                  $msg .= "Vous avez demandé à recevoir vos identifiants :
+                  <br/>Pseudo : ".htmlspecialchars($result['pseudo'])."<br/>
+                  Mot de passe : ".$result['pass']."<br/><br/>";
                   $msg .= "Cordialement";
                   //permet de savoir qui envoie le mail et d'y répondre
                   $mailheaders = "From: $webmaster\n";
@@ -66,7 +78,10 @@
                   mail($a_qui_j_envoie, $subject, $msg, $mailheaders);
                   //on laisse un message de confirmation
                   echo '<div id="ok">Vos identifiants ont été envoyé sur votre boite email.</div>
-									<script type="text/javascript"> window.setTimeout("location=(\'../index.php?recup=ok\');",30) </script>';
+                  
+		<script type="text/javascript"> 
+			window.setTimeout("location=(\'../index.php?recup=ok\');",30) 
+		</script>';
               }
           }
           close_bd();
