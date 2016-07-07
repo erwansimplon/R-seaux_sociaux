@@ -1,5 +1,5 @@
  <?php
- include("../bdd/db.php");
+ include("../bdd/connexion_bdd.php");
 
 if(isset($_POST['msg_id']))
 {
