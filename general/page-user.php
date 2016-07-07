@@ -23,6 +23,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     //on libère le résultat de la mémoire
     mysql_free_result($affiche);
     ?>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -64,7 +65,8 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
           //Si le membre possède une image, on l'affiche
 
 					if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-					echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg'.'"/>';
+					echo '<img class="avatar" style="float:left;" alt="avatar" 
+					src="../auth-photos/'.$id.$image.'images.jpg'.'"/>';
 					}
 
             ?></a>
