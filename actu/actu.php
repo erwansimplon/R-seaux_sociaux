@@ -20,6 +20,7 @@ $id=$_SESSION['id'];
 		<head>
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 				<link rel="stylesheet" href="../css/actu-style.css" type="text/css" media="screen"/>
+				<!-- ajax pour les messages et commentaires envoyer par l'utilisateur -->
 				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 				<script type="text/javascript">
 							$(function()
@@ -45,43 +46,47 @@ $id=$_SESSION['id'];
 							});
 							});
 				</script>
+				<!-- fin ajax -->
 			</head>
 
 <body>
 
 <ol>
-
+<!-- formulaire pour que l'utilisateur puisse taper son message et l'envoyer -->
 		<li class="li_msg">
 				<form action="../actu/savemessage.php" method="post">
 						<textarea class="editbox" cols="23" rows="3" name="message"></textarea><br />
 						<input id="POST" name="POST" type="submit" value="POST" />
 				</form>
 		</li>
-
+<!-- fin -->
 <?php
-include("../bdd/db.php");
+// recupération du fichier connection
+include("../bdd/connexion_bdd.php");
+connexion_db();
 
+// séléctionne les messages et les affiches par leurs numéro de façon décroissant 
 $msql1=mysql_query("select * from messages order by msg_id desc");
 while($messagecount=mysql_fetch_array($msql1))
 {
 $id_msg=$messagecount['msg_id'];
 $msgcontent=$messagecount['message'];
-
+// jointure qui relie l'utilisateurs a c'est message
 $req="SELECT pseudo FROM LOGIN AS l INNER JOIN messages AS m ON l.id = m.idLog WHERE id= $id";
 // $req ="insert into messages (message, IdLog) VALUES ('Mon message','$id')";
 
 $msql=mysql_query($req);
 
 
-
+//bug a corrigé les 2 boucles while on un confli
 while($msg=mysql_fetch_array($msql, MYSQL_ASSOC))
 {
 ?>
-
+<!-- structure des message poster par l'utilisateur -->
 <li class="comment_envoyer">
 
 		<div class="comment_squelette">
-
+<!-- contenu du message poster -->
 				<h3 class="Message" >
 
 					<?php
@@ -94,18 +99,21 @@ while($msg=mysql_fetch_array($msql, MYSQL_ASSOC))
 
 					?><?php
 												$idm=$msg['pseudo'];
-												print '<strong>'.$idm.'</strong>';
+												print '<strong>'.$idm.'</strong>';//affiche le pseudo en gras
 
-												echo '<br>'.$msgcontent;
-											?><!--<strong><//?php print $idm; ?></strong>-->
-						<!--<p><//?php echo $msgcontent; ?></p>-->
+												echo '<br>'.$msgcontent; //affiche le message
+											?>
 
 		<div id="message_conteneur">
 
 <?php
-
+// affiche les commentaires dessous du message correspondant 
 $sql=mysql_query("select * from comments where msg_id_fk='$id_msg' order by com_id");
 $comment_count=mysql_num_rows($sql);
+
+
+/* permet de voir que 2 commentaires sous les messsage et on doit cliquer sur la div class="comment_ui" 
+pour afficher tous les commentaires */
 
 if($comment_count>2)
 {
@@ -165,6 +173,7 @@ $comment=$rowsmall['comments'];
 				}
 
 			?>
+			<!-- formulaire qui permet a l'utilisateur d'écrire un commentaire -->
 				<form action="../actu/savecomment.php" method="post">
 					<input name="mesgid" type="hidden" value="<?php echo $id_msg ?>" />
 					<input name="mcomment" id="text_comment" type="text" placeholder="..." />
