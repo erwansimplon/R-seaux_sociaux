@@ -12,15 +12,16 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
       AND valide='".mysql_real_escape_string(1)."'
       AND statut='".mysql_real_escape_string(1)."'");
     $result = mysql_fetch_assoc($affiche);
-    //si le statut ne retourne pas 1, ce n'est pas un admin..on éjecte l'utilisateur
+    //si le statut ne retourne pas 1, ce n'est pas un admin.On éjecte l'utilisateur
     if(mysql_num_rows($affiche) == 0)
     {
       echo 'Il n\'y a rien à voir ici!
-      <script type="text/javascript">
-          window.setTimeout("location=(\'../index.php?dec=close\');",30)
-      </script>'; return false;
+      
+      $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+      $URL_NEWS = "../general/user.php?id=".$hachage;
+      header("location:".$URL_NEWS);
     }
-    //http://php.net/manual/fr/function.extract.php
+    
       extract($result);
       //on libère le résultat de la mémoire
    mysql_free_result($affiche);
