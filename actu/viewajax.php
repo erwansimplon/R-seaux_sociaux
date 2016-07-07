@@ -1,7 +1,7 @@
  <?php
- include("../bdd/db.php");
+ include("../bdd/connexion_bdd.php");
 
-if(isSet($_POST['msg_id']))
+if(isset($_POST['msg_id']))
 {
 $id=$_POST['msg_id'];
 $com=mysql_query("select * from comments where msg_id_fk='$id' order by com_id DESC");
