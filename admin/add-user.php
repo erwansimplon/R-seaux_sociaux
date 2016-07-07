@@ -98,7 +98,7 @@ if(isset($_POST['Envoyer'])){
 			if (!$insert) {
 				die('Requête invalide : ' . mysql_error());
 			}
-		//pas d'erreur d'enregistrement, on envoie un mail de confirmation
+		
 			else {
                 echo '<div id="ok">Création réussit.</div>
                 <script type="text/javascript">
