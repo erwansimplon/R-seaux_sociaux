@@ -11,7 +11,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     AND pass='".mysql_real_escape_string($_SESSION['pass'])."'
     AND valide='".mysql_real_escape_string(1)."'");
     $result = mysql_fetch_assoc($affiche);
-    //http://php.net/manual/fr/function.extract.php
+ 
     extract($result);
     //si le membre est banni en cours de session
     if($valide==2){
@@ -35,9 +35,12 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     </head>
 
 <body>
-
+<!-- affiche le cadre blanc -->
 <div id="cadre">
+    <!-- affiche la l'image la barre de recherche et le menu dans une div bleu -->
     <div id="recherche">
+        <!-- affiche l'image de profil et redirige vers la page privé de la personne 
+        avec l'id et le pseudo qui se balade dans l'url en crypter -->
         <div id="accueil">
             <a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
                             $URL_NEWS = "page-user.php?id=".$hachage;
@@ -49,25 +52,32 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
           }
 
             ?></a>
-
+<!-- fin -->
 
         </div>
+        <!-- barre de recherche youtube qui va devenir une barre de recherche dans la bdd -->
         <div id="placementrecherche">
             <form action="http://www.youtube.com/results" method="get" target="_blank" >
                 <input name="search_query" type="text" />
                 <input id="ok" type="submit" value="OK" />
             </form>
        </div>
+       <!-- fin -->
        <div id="placementmenu">
           <?php include('menu.php');?>
        </div>
      </div>
+     <!-- messages et commentaires poster sur le site-->
      <div id="actu">
            <?php include('../actu/actu.php'); ?>
      </div>
+     <!-- fin -->
+     <!-- message priver avec la liste de toute les personnes enregistrer dans la bdd qui va part la suite 
+     devenir la liste des amies -->
      <div id="messagerie">
             <?php include('messagerie.php');?>
      </div>
+     <!-- fin -->
   </div>
 
 </div>
