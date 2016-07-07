@@ -1,5 +1,5 @@
 <?php
-include("../bdd/db.php");
+include("../bdd/connexion_bdd.php");
 $msgcon=$_POST['message'];
 mysql_query("INSERT INTO msg (message)
 VALUES ('$msgcon')");
