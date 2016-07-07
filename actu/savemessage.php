@@ -1,6 +1,7 @@
 
 <?php
-include("../bdd/db.php");
+//va cherche le fichier connexion a la bdd 
+include("../bdd/connexion_bdd.php");
 session_start();
 
 $req="SELECT * FROM LOGIN WHERE pseudo='".mysql_real_escape_string(stripcslashes($_SESSION['pseudo']))."'
@@ -20,13 +21,16 @@ $_SESSION['pass']=$msg['pass'];
 }
 
 $id=$_SESSION['id'];
-
+//capture le message envoyer par l'utilisateur
 $msgcon=$_POST['message'];
+// envoie les donner dans la bdd 
 $req="INSERT INTO messages (message, idLog) VALUES ('$msgcon', '$id')";
-print $req;
+//test 
+print $req; 
 print "<br>pseudo = ".$_SESSION['pseudo'];
 print "<br>id = ".$id;
-
+// fin test
 mysql_query($req);
+// redirige vers la page initial 
 header("location: ../general/user.php");
 ?>
