@@ -47,7 +47,7 @@
 <?php
 // va cherche le fichier connection 
 include("../bdd/db.php");
-
+//séléctionne les message de la page privé pour les afficher 
 $msql=mysql_query("select * from msg order by msg_id desc");
 while($messagecount=mysql_fetch_array($msql))
 {
