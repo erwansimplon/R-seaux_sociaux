@@ -15,7 +15,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     //si le statut ne retourne pas 1, ce n'est pas un admin.On éjecte l'utilisateur
     if(mysql_num_rows($affiche) == 0)
     {
-      echo 'Il n\'y a rien à voir ici!;
+      echo 'Il n\'y a rien à voir ici!';
       
       $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
       $URL_NEWS = "../general/user.php?id=".$hachage;
@@ -47,17 +47,19 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
             
   		if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
   		echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
-  					}
-  				}
+  		}
+  				
             ?></a>
 
           </div>
+          <!-- barre de recherche youtube -->
         <div id="placementrecherche">
       <form action="http://www.youtube.com/results" method="get" target="_blank" >
         <input name="search_query" type="text" />
         <input type="submit" value="OK" />
       </form>
     </div>
+     <!-- menu -->
         <div id="placementmenu">
     <?php include('../general/menu.php');?>
         </div>
@@ -202,8 +204,8 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
             //si ok
             else{
             //si le membre a une image, on la supprime
-        if (file_exists('../auth-photos/'.$_GET['supmembre'].'.jpg')){
-            unlink('../auth-photos/'.$_GET['supmembre'].'.jpg');
+        if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+            unlink('../auth-photos/'.$id.$image.'images.jpg');
         }
         //on informe et on redirige
         echo '<div class="ok">Membre supprimé avec succès. Redirection en cours...</div>
