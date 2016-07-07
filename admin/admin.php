@@ -43,9 +43,9 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
           <div id="accueil">
             <a href="../general/page-user.php"><?php
             //Si le membre possède une image, on l'affiche
-            for ($i; $i <= 3; $i++){
-  					if (file_exists('../auth-photos/'.$id.$image.'images'.$i.'.jpg')){
-  					echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images'.$i.'.jpg"/>';
+            
+  		if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+  		echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
   					}
   				}
             ?></a>
@@ -155,7 +155,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
         <?php
         //si le membre a une image, on affiche un formulaire permettant de garder ou
         //supprimer celle-ci
-        if (file_exists('../auth-photos/'.$id_membre.'.jpg')){
+        if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
             echo '<label for>Supprimer l\'image :</label>
             <select name="image" />
                  <option value="non">Non</option>
@@ -174,11 +174,11 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
         <br/>
         <?php
         //on affiche l'image du membre si il en possède une
-        for ($i; $i <= 3; $i++){
-        if (file_exists('../auth-photos/'.$id.$image.'images'.$i.'.jpg')){
-        echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images'.$i.'.jpg"/>';
+        
+        if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+        echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
         }
-      }
+      
         ?>
 
     </div>
@@ -277,9 +277,9 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
             }
            else{
                 //on supprime l'image si besoin
-                if (file_exists('../auth-photos/'.$id_membre.'.jpg') && $_POST['image']=="oui")
+                if (file_exists('../auth-photos/'.$id.$image.'images.jpg') && $_POST['image']=="oui")
                 {
-                    unlink('../auth-photos/'.$id_membre.'.jpg');
+                    unlink('../auth-photos/'.$id.$image.'images.jpg');
                 }
                 //message de confirmation
                 echo '<div class="ok">
