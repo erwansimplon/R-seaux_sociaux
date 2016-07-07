@@ -98,10 +98,12 @@ if(isset($_POST['Envoyer'])){
          '".mysql_real_escape_string('0')."',
          '".mysql_real_escape_string('0')."',
          '".mysql_real_escape_string($date)."' ) ");
-			//Si il y a une erreur
+         
+	//Si il y a une erreur
 	if (!$insert) {
-				die('Requête invalide : ' . mysql_error());
+			die('Requête invalide : ' . mysql_error());
 			}
+			
 	//pas d'erreur d'enregistrement, on envoie un mail de confirmation
     	else {
 		//email de celui qui envoie
@@ -112,7 +114,9 @@ if(isset($_POST['Envoyer'])){
 		$subject = "Valider votre inscription";
 		//message
 		$msg  = "Bonjour ".stripcslashes($_POST['pseudo'])."<br/><br/>";
-		$msg .= "Veuillez confirmer votre inscription en cliquant sur le lien ci-joint <a href=\"http://".$_SERVER['HTTP_HOST']."confirmation-inscription.php?pseudo=".stripcslashes($_POST['pseudo'])."&email=".$_POST['email']."\">Confirmation</a><br/>";
+		$msg .= "Veuillez confirmer votre inscription en cliquant sur le lien ci-joint 
+		<a href=\"http://".$_SERVER['HTTP_HOST']."/inscription/confirmation-inscription.php?pseudo="
+		.stripcslashes($_POST['pseudo'])."&email=".$_POST['email']."\">Confirmation</a><br/>";
 		$msg .= "Cordialement";
 		//permet de savoir qui envoie le mail et d'y répondre
 		$mailheaders = "From: $webmaster\n";
