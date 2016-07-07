@@ -1,9 +1,11 @@
  <?php
+ // va chercher mon fichier bdd
  include("../bdd/connexion_bdd.php");
 
 if(isset($_POST['msg_id']))
 {
 $id=$_POST['msg_id'];
+
 $com=mysql_query("select * from comments where msg_id_fk='$id' order by com_id DESC");
 while($r=mysql_fetch_array($com))
 {
@@ -14,15 +16,18 @@ $comment=$r['comments'];
 
 <div class="comment_ui" >
 <div class="comment_text">
-<div  class="comment_actual_text"><img id="profil_img" src="profile.jpg" /><div id="comment_post"><?php echo $comment; ?></div></div>
+<div  class="comment_actual_text"><img id="profil_img" src="../auth-photos/'.$id.$image.'images.jpg" /><div id="comment_post"><?php echo $comment; ?></div></div>
 </div>
 </div>
 
 
-<?php } }?>
+<?php 
+}
+}
+?>
 <div class="add_comment">
 <div>
-<img src="profile.jpg" id="profil_img" />
+<img src="../auth-photos/'.$id.$image.'images.jpg" id="profil_img" />
 <form action="../actu/savecomment.php" method="post">
 <input name="mesgid" type="hidden" value="<?php echo $id ?>" />
 <input name="mcomment" type="text" placeholder="..." id="largeur_input_comment" />
