@@ -17,49 +17,49 @@ $id=$_SESSION['id'];
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-		<head>
-				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-				<link rel="stylesheet" href="../css/actu-style.css" type="text/css" media="screen"/>
-				<!-- ajax pour les messages et commentaires envoyer par l'utilisateur -->
-				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
-				<script type="text/javascript">
-							$(function()
-							{
-							$(".view_comments").click(function()
-							{
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../css/actu-style.css" type="text/css" media="screen"/>
+		<!-- ajax pour les messages et commentaires envoyer par l'utilisateur -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function()
+			{
+			$(".view_comments").click(function()
+			{
 
-							var ID = $(this).attr("id");
+			var ID = $(this).attr("id");
 
-							$.ajax({
-							type: "POST",
-							url: "../actu/viewajax.php",
-							data: "msg_id="+ ID,
-							cache: false,
-							success: function(html){
-							$("#view_comments"+ID).prepend(html);
-							$("#view"+ID).remove();
-							$("#two_comments"+ID).remove();
-							}
-							});
+			$.ajax({
+			type: "POST",
+			url: "../actu/viewajax.php",
+			data: "msg_id="+ ID,
+			cache: false,
+			success: function(html){
+			$("#view_comments"+ID).prepend(html);
+			$("#view"+ID).remove();
+			$("#two_comments"+ID).remove();
+			}
+			});
 
-							return false;
-							});
-							});
-				</script>
-				<!-- fin ajax -->
-			</head>
+			return false;
+			});
+			});
+		</script>
+		<!-- fin ajax -->
+	</head>
 
-<body>
+	<body>
 
-<ol>
-<!-- formulaire pour que l'utilisateur puisse taper son message et l'envoyer -->
+	<ol>
+	<!-- formulaire pour que l'utilisateur puisse taper son message et l'envoyer -->
 		<li class="li_msg">
-				<form action="../actu/savemessage.php" method="post">
-						<textarea class="editbox" cols="23" rows="3" name="message"></textarea><br />
-						<input id="POST" name="POST" type="submit" value="POST" />
-				</form>
+			<form action="../actu/savemessage.php" method="post">
+				<textarea class="editbox" cols="23" rows="3" name="message"></textarea><br />
+				<input id="POST" name="POST" type="submit" value="POST" />
+			</form>
 		</li>
-<!-- fin -->
+	<!-- fin -->
 <?php
 // recupération du fichier connection
 include("../bdd/connexion_bdd.php");
@@ -85,24 +85,23 @@ while($msg=mysql_fetch_array($msql, MYSQL_ASSOC))
 <!-- structure des message poster par l'utilisateur -->
 <li class="comment_envoyer">
 
-		<div class="comment_squelette">
-<!-- contenu du message poster -->
-				<h3 class="Message" >
+	<div class="comment_squelette">
+	<!-- contenu du message poster -->
+		<h3 class="Message" >
 
-					<?php
+			<?php
 
-					//Si le membre possède une image, on l'affiche
+			//Si le membre possède une image, on l'affiche
 
-					if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-					echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
-					}
+			if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+			echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
+			}
 
-					?><?php
-												$idm=$msg['pseudo'];
-												print '<strong>'.$idm.'</strong>';//affiche le pseudo en gras
-
-												echo '<br>'.$msgcontent; //affiche le message
-											?>
+			
+			$idm=$msg['pseudo'];
+			print '<strong>'.$idm.'</strong>';//affiche le pseudo en gras
+			echo '<br>'.$msgcontent; //affiche le message
+			?>
 
 		<div id="message_conteneur">
 
@@ -121,7 +120,10 @@ $second_count=$comment_count-2;
 ?>
 
 		<div class="comment_ui" id="view<?php echo $id_msg; ?>">
-				<div><a href="#" class="view_comments" id="<?php echo $id_msg; ?>">Voir les <?php echo $comment_count; ?> autres commentaires</a></div>
+			<div>
+				<a href="#" class="view_comments" id="<?php echo $id_msg; ?>">
+				Voir les <?php echo $comment_count; ?> autres commentaires</a>
+			</div>
 		</div>
 
 <?php
@@ -148,32 +150,40 @@ $comment=$rowsmall['comments'];
 
 		<div class="comment_text">
 
-				<div  class="comment_actual_text">
+			<div  class="comment_actual_text">
 
-					<?php
-				            //Si le membre possède une image, on l'affiche
-
-										if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-										echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
-										}
-
-				            ?><div id="comment_post"><?php echo $comment; ?></div></div>
-		</div>
-
-</div>
-
-<?php } ?>
-		<div class="add_comment">
-			<div>
 				<?php
-				//Si le membre possède une image, on l'affiche
+			        //Si le membre possède une image, on l'affiche
 
 				if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-				echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
+				echo '<img class="avatar" style="float:left;" alt="avatar" 
+				src="../auth-photos/'.$id.$image.'images.jpg"/>';
 				}
+
+				?>
+				<div id="comment_post"><?php echo $comment; ?>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+<?php
+}
+?>
+	<div class="add_comment">
+		<div>
+			<?php
+			//Si le membre possède une image, on l'affiche
+
+			if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+			echo '<img class="avatar" style="float:left;" alt="avatar" 
+			src="../auth-photos/'.$id.$image.'images.jpg"/>';
+			}
 
 			?>
 			<!-- formulaire qui permet a l'utilisateur d'écrire un commentaire -->
+			
 				<form action="../actu/savecomment.php" method="post">
 					<input name="mesgid" type="hidden" value="<?php echo $id_msg ?>" />
 					<input name="mcomment" id="text_comment" type="text" placeholder="..." />
