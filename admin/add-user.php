@@ -10,7 +10,7 @@
 <body>
 
 <div id="centre">
-
+<!-- formulaire qui crée un utilisateurs -->
     <h1>Créer un utilisateur</h1>
 
         <form method="POST" action="#">
