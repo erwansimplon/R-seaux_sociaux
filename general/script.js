@@ -1,14 +1,18 @@
-/* jquery en cours de modification pour permettre d'afficher tous les amis et 
+/* jquery en cours de modification pour permettre d'afficher tous les amis et
 de pouvoir ouvrir les conversation quand on clic sur le pseudo actuellements réussi mais pas optimiser */
 
 $(document).ready(function(){
+
+	$('.msg_box').hide();
+	$('.msg_box1').hide();
+	$('.msg_box2').hide();
 
 	$('.chat_head').click(function(){
 		$('.chat_body').slideToggle('slow');
 		$('.chat_body1').slideToggle('slow');
 		$('.chat_body2').slideToggle('slow');
 	});
-	
+
 	$('.msg_head').click(function(){
 		$('.msg_body').slideToggle('slow');
 	});
@@ -52,7 +56,7 @@ $(document).ready(function(){
 	});
 
 	$('textarea').keypress(
-		
+
     	function(e){
         	if (e.keyCode == 13) {
             	e.preventDefault();

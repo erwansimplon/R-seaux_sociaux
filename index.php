@@ -13,37 +13,42 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
     <head>
     		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     		<meta http-equiv="Content-Language" content="fr" />
-        <link rel="stylesheet" href="../css/style-index.css" type="text/css" media="screen" />
+        <link rel="icon" type="image/png" href="/auth-photos/icon.jpg" />
+        <link class="css-pc" rel="stylesheet" href="../css/style-index.css" type="text/css" media="screen" />
     		<title>Authentification</title>
     </head>
 
 <body>
 <!-- affiche le cadre -->
-	<div id="centre">
-<!-- formulaire pour s'authentifier -->
-		<h1>Authentification</h1>
-          <form method="POST" action="index.php">
-              <label for="pseudo">Pseudo : </label>
-                  <input type="text" name="pseudo" maxlength="20"
-                  value="<?php if (!empty($_POST["pseudo"]))
-                      { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); } ?>" /><!-- champs pseudo protéger -->
-                      <br/>
-              <label for="pass">Mot de Passe : </label>
-                  <input type="password" name="motdepass" maxlength="20"
-                  value="<?php if (!empty($_POST["motdepass"]))
-                      { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); } ?>" /><!-- champs pseudo protéger -->
-                      <br/>
-              <label for="action">Action : </label>
-                  <input type="submit" name="Envoyer" value="Envoyer" />
-                  <input name="Effacer" value="Effacer" type="reset" />
-          </form>
+<div class="login">
+  <div class="login-apparence">
+    <div class="titre">
+      <h1>Authentification</h1>
+    </div>
 
-<br/>
-<!-- affiche les liens pour basculer vers l'inscription et le mot de passe perdu --> 
-      <p id="lien"><a href="index.php">Connexion</a> |
-        <a href="../inscription/creer-compte.php">Créer un compte</a> |
-        <a href="../inscription/identifiant-perdu.php">Identifiant perdu?</a></p>
-<!-- fin -->
+    <div class="login-form">
+      <form method="POST" action="index.php">
+      <div class="champ">
+      <input class="champ_pseudo" type="text" value="<?php if (!empty($_POST["pseudo"]))
+          { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); } ?>" placeholder="Pseudo" name="pseudo">
+      <label for="pseudo"></label>
+      </div>
+
+      <div class="champ">
+      <input class="champ_pass" type="password" value="<?php if (!empty($_POST["motdepass"]))
+          { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); } ?>" placeholder="Mot de passe" name="motdepass">
+      <label for="pass"></label>
+      </div>
+      <a class="pass_perdu button_lien" href="../inscription/identifiant-perdu.php">Identifiant perdu?</a>
+      <br>
+      <br>
+      <input class="button_tel button_envoyer" type="submit" name="Envoyer" value="Connexion" />
+      <br>
+      <br>
+        <a class="button_tel button_effacer button_lien" href="../inscription/creer-compte.php">Créer un compte</a>
+    </div>
+  </div>
+
 <!-- message si le javascript tourne pas -->
 		<noscript>
       <div id="erreur">
@@ -51,8 +56,9 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
            Veuillez activer JavaScript afin de profiter pleinement du site.
       </div>
     </noscript>
+</div>
 <!-- fin -->
-    </div>
+
 
       <?php
       // vérification des données saisies par l'utilisateur
@@ -69,7 +75,7 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
           }
       //Si tout est bon, on se connecte à la base de données et on vérifie que
       //l'utilisateur existe
-      //si ok 
+      //si ok
       else{
           include("bdd/connexion_bdd.php");
           connexion_bd();
@@ -92,6 +98,7 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
             			echo '<div id="erreur">Vous n\'avez pas validé votre inscription!<br/>»
                   <a href="valider-inscription.php?id='.$result['id'].'">
                   Valider votre inscription</a></div>';
+
             		}
           //utilisateur à bien validé son inscription,
           //on vérifie à présent si celui-ci n'est pas banni
@@ -105,8 +112,9 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
                 //on créer la session
                 $_SESSION['pseudo'] = utf8_decode($_POST['pseudo']);
                 $_SESSION['pass'] = utf8_decode($_POST['motdepass']);
+                $id=$result['id'];
                 //on redirige avec une url crypther
-                $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+                $hachage = $id;
                 $URL_NEWS = "../general/user.php?id=".$hachage;
                 header("location:".$URL_NEWS);
                 }

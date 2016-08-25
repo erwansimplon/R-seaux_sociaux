@@ -1,61 +1,525 @@
-body{
-	background:#F1F1F1;
-	font-size: 11px;
+@media all and (min-width: 0px) and (max-width: 535px){
+
+	h1{
+		font-size: 25px !important;
+	}
+
+	input[type=submit],input[type=reset]{
+		margin-right:0px !important;
+	}
+
+	label{
+		text-align: right;
+		width: 100px;
+		padding-right: 20px;
+	}
+
+	* {
+	box-sizing: border-box;
+	}
+
+	*:focus {
+		outline: none;
+	}
+	 {
+	font-family: Arial;
+	background-color: #3498DB;
+	padding: 50px;
+	}
+
+	input {
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent !important;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
+	}
+
+	input:focus {
+	border: 2px solid #3498DB !important;
+	box-shadow: none;
+	}
+
+	.button_envoyer{
+		width: 100% !important;
+		margin-left: 0% !important;
+		font-weight:bold !important;
+		display: block !important;
+	}
+
+	.button_effacer{
+		width: 100% !important;
+		font-weight:bold !important;
+		display: block !important;
+	}
+
+	.login {
+	margin: 20px auto !important;
+	margin-top: 30% !important;
+	width: auto !important;
+	}
+
+	.login-apparence {
+	background-color: #FFF !important;
+	padding: 20px !important;
+	border-radius: 5px !important;
+	}
+
+	.titre {
+	text-align: center !important;
+	color: #777 !important;
+	}
+
+	.login-form {
+	text-align: center !important;
+	}
+
+	.champ {
+	margin-bottom: 10px !important;
+	}
+
+	.champ_pseudo{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.champ_pass{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.button_tel {
+	  border: 2px solid transparent !important;
+	  background: #3498DB !important;
+	  color: #ffffff !important;
+	  font-size: 16px !important;
+	  line-height: 25px !important;
+	  padding: 10px 0 !important;
+	  text-decoration: none !important;
+	  text-shadow: none !important;
+	  border-radius: 3px !important;
+	  box-shadow: none !important;
+	  transition: 0.25s !important;
+	  margin: 5px auto !important;
+	}
+
+	.button_lien{
+		display: inline-block;
+		width: 32.9%;
+		margin-top: 10px !important;
+	}
+
+	.button_tel:hover {
+	  background-color: #2980B9 !important;
+	}
+
+	.login-lien-pc {
+	  font-size: 12px !important;
+	  color: #444 !important;
+	  display: block !important;
+		margin-top: 12px !important;
+	}
 }
 
-h1{
-	text-align:center;
-	color:#CCC;
+@media all and (min-width: 536px) and (max-width: 699px){
+
+	h1{
+		font-size: 30px !important;
+	}
+
+	label{
+		text-align: right;
+		width: 100px;
+		padding-right: 20px;
+	}
+
+	* {
+	box-sizing: border-box;
+	}
+
+	*:focus {
+		outline: none;
+	}
+	body {
+	font-family: Arial;
+	background-color: #3498DB;
+	padding: 50px;
+	}
+
+	.body{
+		padding: 0px !important;
+		width: 100%;
+		margin-left: -0.5px;
+	}
+
+	input {
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent !important;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
+	}
+
+	input:focus {
+	border: 2px solid #3498DB !important;
+	box-shadow: none;
+	}
+
+	.button_envoyer{
+		width: 48.4% !important;
+		margin-left: 0.6% !important;
+		font-weight:bold !important;
+		margin-right: 5px !important;
+	}
+
+	.button_effacer{
+		width: 48.4% !important;
+		font-weight:bold !important;
+	}
+
+	.login {
+	margin: 20px auto !important;
+	margin-top: 30% !important;
+	width: auto !important;
+	}
+
+	.login-apparence {
+	background-color: #FFF !important;
+	padding: 20px !important;
+	border-radius: 5px !important;
+	}
+
+	.titre {
+	text-align: center !important;
+	color: #777 !important;
+	}
+
+	.login-form {
+	text-align: center !important;
+	}
+
+	.champ {
+	margin-bottom: 10px !important;
+	}
+
+	.champ_pseudo{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.champ_pass{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.button_tel {
+	  border: 2px solid transparent !important;
+	  background: #3498DB !important;
+	  color: #ffffff !important;
+	  font-size: 16px !important;
+	  line-height: 25px !important;
+	  padding: 10px 0 !important;
+	  text-decoration: none !important;
+	  text-shadow: none !important;
+	  border-radius: 3px !important;
+	  box-shadow: none !important;
+	  transition: 0.25s !important;
+	}
+
+	.button_lien{
+		display: inline-block;
+		width: 32.9%;
+		margin-top: 10px !important;
+	}
+
+	.button_tel:hover {
+	  background-color: #2980B9 !important;
+	}
+
+	.login-lien-pc {
+	  font-size: 12px !important;
+	  color: #444 !important;
+	  display: block !important;
+		margin-top: 12px !important;
+	}
+
+	.button_env_photo{
+		width: 75% !important;
+	}
 }
 
-label,input{
-	display: block;
-	width: 150px;
-	float: left;
-	margin-bottom: 10px;
+@media all and (min-width: 700px) and (max-width: 799px){
+
+	h1{
+		font-size: 50px !important;
+	}
+
+	label{
+		text-align: right;
+		width: 100px;
+		padding-right: 20px;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	*:focus {
+		outline: none;
+	}
+	body {
+	font-family: Arial;
+	background-color: #3498DB;
+	padding: 50px;
+	}
+
+	.body{
+		padding: 0px !important;
+		width: 100%;
+		margin-left: -0.5px;
+	}
+
+	input {
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent !important;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
+	}
+
+	input:focus {
+	border: 2px solid #3498DB !important;
+	box-shadow: none;
+	}
+
+	.button_envoyer{
+		width: 48.4% !important;
+		margin-left: 0.6% !important;
+		font-weight:bold !important;
+		margin-right: 5px !important;
+	}
+
+	.button_effacer{
+		width: 48.4% !important;
+		font-weight:bold !important;
+	}
+
+	.login {
+	margin: 20px auto !important;
+	margin-top: 30% !important;
+	width: auto !important;
+	}
+
+	.login-apparence {
+	background-color: #FFF !important;
+	padding: 20px !important;
+	border-radius: 5px !important;
+	}
+
+	.titre {
+	text-align: center !important;
+	color: #777 !important;
+	}
+
+	.login-form {
+	text-align: center !important;
+	}
+
+	.champ {
+	margin-bottom: 10px !important;
+	}
+
+	.champ_pseudo{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.champ_pass{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.button_tel {
+	  border: 2px solid transparent !important;
+	  background: #3498DB !important;
+	  color: #ffffff !important;
+	  font-size: 25px !important;
+	  line-height: 25px !important;
+	  padding: 10px 0 !important;
+	  text-decoration: none !important;
+	  text-shadow: none !important;
+	  border-radius: 3px !important;
+	  box-shadow: none !important;
+	  transition: 0.25s !important;
+	  margin: 0 auto;
+	}
+
+	.button_lien{
+		display: inline-block;
+		width: 32.9%;
+		margin-top: 10px !important;
+	}
+
+	.button_tel:hover {
+	  background-color: #2980B9 !important;
+	}
+
+	.login-lien-pc {
+	  font-size: 12px !important;
+	  color: #444 !important;
+	  display: block !important;
+		margin-top: 12px !important;
+	}
 }
 
-input[type=submit],input[type=reset]{
-	width: 70px;
-	margin-right:5px;
+@media all and (min-width: 800px) and (max-width: 1304px){
+
+	label{
+		text-align: right;
+		width: 100px;
+		padding-right: 20px;
+	}
+
+	* {
+	box-sizing: border-box;
+	}
+
+	*:focus {
+		outline: none;
+	}
+	body {
+	font-family: Arial;
+	background-color: #3498DB;
+	padding: 50px;
+	}
+
+	.body{
+		padding: 0px !important;
+		width: 100%;
+		margin-left: -0.5px;
+	}
+
+	input {
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent !important;
+	border-radius: 3px;
+	font-size: 25px !important;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
+	}
+
+	input:focus {
+	border: 2px solid #3498DB !important;
+	box-shadow: none;
+	}
+
+	.button_envoyer{
+		width: 48.4% !important;
+		margin-left: 0.6% !important;
+		font-weight:bold !important;
+		margin-right: 5px !important;
+	}
+
+	.button_effacer{
+		width: 48.4% !important;
+		font-weight:bold !important;
+	}
+
+	.login {
+	margin: 20px auto !important;
+	margin-top: 30% !important;
+	width: auto !important;
+	}
+
+	.login-apparence {
+	background-color: #FFF !important;
+	padding: 20px !important;
+	border-radius: 5px !important;
+	}
+
+	.titre {
+	text-align: center !important;
+	color: #777 !important;
+	}
+
+	.login-form {
+	text-align: center !important;
+	}
+
+	.champ {
+	margin-bottom: 10px !important;
+	}
+
+	.champ_pseudo{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.champ_pass{
+		width: 98.2% !important;
+		margin-left: 1% !important;
+	}
+
+	.button_tel {
+	  border: 2px solid transparent !important;
+	  background: #3498DB !important;
+	  color: #ffffff !important;
+	  font-size: 25px !important;
+	  line-height: 25px !important;
+	  padding: 10px 0 !important;
+	  text-decoration: none !important;
+	  text-shadow: none !important;
+	  border-radius: 3px !important;
+	  box-shadow: none !important;
+	  transition: 0.25s !important;
+	  margin: 0 auto;
+	}
+
+	.button_lien{
+		display: inline-block;
+		width: 32.9%;
+		margin-top: 10px !important;
+	}
+
+	.button_tel:hover {
+	  background-color: #2980B9 !important;
+	}
+
+	.login-lien-pc {
+	  font-size: 12px !important;
+	  color: #444 !important;
+	  display: block !important;
+		margin-top: 12px !important;
+	}
 }
 
-label{
-	text-align: right;
-	width: 100px;
-	padding-right: 20px;
-}
+@media all and (min-width: 1305px) and (max-width: 1420px){
 
-br {
-	clear: left;
-}
+	.button_lien{
+		display: inline-block;
+		width: 32.9%;
+		margin-top: 10px !important;
+	}
 
-#centre {
-	background:white;
-	position : absolute;
-	left : 50%;
-	top : 50%;
-	border : 1px solid #aaa;
-	width : 400px;
-	height : 300px;
-	margin-top : -150px;
-	margin-left: -200px;
-	border-radius : 5px;
-	-webkit-border-radius : 5px;
-	-moz-border-radius : 5px;
-	padding:5px;
-	text-align:center;
-	box-shadow: 8px 8px 12px #aaa;
-	-moz-box-shadow: 8px 8px 12px #aaa;
-	-webkit-box-shadow: 8px 8px 12px #aaa;
-	color:#aaa;
+	.button_envoyer{
+		margin-right: 5px !important;
+	}
 }
-
-#centre a{
-	color:black;
-	text-decoration:none;
-}
-
 #erreur{
 	background:#F11A57;
 	color : #FFF;
@@ -80,9 +544,144 @@ br {
 	text-align:left;
 }
 
-#lien{
-	position:absolute;
-	left: 20%;
-	right: 20%;
-	bottom: 0px;
+#ok_recherche{
+	margin-left: 50px !important;
+	height: 70% !important;
+	width: 50px !important;
+	font-size: 20px !important;
+}
+
+h1{
+	font-size: 75px;
+	text-align:center;
+	color:#CCC;
+}
+
+label{
+	text-align: right;
+	width: 100px;
+	padding-right: 20px;
+}
+
+* {
+box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+body {
+font-family: Arial;
+background-color: #3498DB;
+padding: 50px;
+}
+
+.body{
+	padding: 0px !important;
+	width: 100%;
+	margin-left: -0.5px;
+}
+
+input {
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 250px;
+transition: border .5s;
+}
+
+input:focus {
+border: 2px solid #3498DB;
+box-shadow: none;
+outline: none;
+}
+
+.button_envoyer{
+	width: 48.4%;
+	margin-left: 0px;
+	font-weight:bold;
+	clear: left !important;
+	margin-left: 0.6%;
+	outline: none;
+}
+
+.button_effacer{
+	width: 48.4%;
+	font-weight:bold;
+	outline: none;
+}
+
+.login {
+margin: 20px auto;
+margin-top: 5%;
+width: 50%;
+}
+
+.login-apparence {
+background-color: #FFF;
+padding: 20px;
+border-radius: 5px;
+}
+
+.titre {
+text-align: center;
+color: #777;
+}
+
+.login-form {
+text-align: center;
+}
+
+.champ {
+margin-bottom: 10px;
+}
+
+.champ_pseudo{
+	width: 98.2% !important;
+	margin-left: 1% !important;
+}
+
+.champ_pass{
+	width: 98.2% !important;
+	margin-left: 1% !important;
+}
+.button_tel {
+	border: 2px solid transparent;
+	background: #3498DB;
+	color: #ffffff;
+	font-size: 16px;
+	line-height: 25px;
+	padding: 10px 0;
+	text-decoration: none;
+	text-shadow: none;
+	border-radius: 3px;
+	box-shadow: none;
+	transition: 0.25s;
+	margin: 0 auto;
+}
+
+.button_lien{
+	display: inline-block;
+}
+
+.pass_perdu{
+	text-decoration: none;
+	color: grey;
+	text-align: right;
+	width: 100%;
+}
+
+.button_tel:hover {
+	background-color: #2980B9;
+}
+
+.login-lien-pc {
+	font-size: 12px;
+	color: #444;
+	display: block;
+	margin-top: 12px;
 }

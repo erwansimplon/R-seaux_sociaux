@@ -16,15 +16,16 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     if(mysql_num_rows($affiche) == 0)
     {
       echo 'Il n\'y a rien à voir ici!';
-      
+
       $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
       $URL_NEWS = "../general/user.php?id=".$hachage;
       header("location:".$URL_NEWS);
     }
-    
+
       extract($result);
       //on libère le résultat de la mémoire
    mysql_free_result($affiche);
+   $idlog=$_SESSION['id'];
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
@@ -35,35 +36,65 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     <meta http-equiv="Content-Language" content="fr" />
     <title>Administration</title>
     <link type="text/css" href="../css/admin-style.css" rel="stylesheet"/>
-    </head>
+    <link rel="icon" type="image/png" href="../auth-photos/icon.jpg" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../general/scriptcouleur.js" ></script>
+    <title>Profil de <?php echo $_SESSION['pseudo'] ?></title>
+</head>
 
-    <body>
+<body class="body">
+<!-- affiche le cadre blanc -->
+<div id="cadre">
+<!-- affiche la l'image la barre de recherche et le menu dans une div bleu -->
+<div class="rech">
 
-    <div id="cadre">
-      <div id="recherche">
-          <div id="accueil">
-            <a href="../general/page-user.php"><?php
-            //Si le membre possède une image, on l'affiche
-            
-  		if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-  		echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
-  		}
-  				
-            ?></a>
+  <!--</div>-->
+    <!-- affiche l'image de profil et redirige vers la page privé de la personne
+    avec l'id et le pseudo qui se balade dans l'url en crypter -->
+    <div id="accueil">
+        <a href="<?php
+//        $hachage = $id."&idlog=".$idlog;
+$hachage = $idlog;
+//$hachage2 = $monid_ami."&id=".$id;
+                      $URL_NEWS = "../general/page-user.php?id=".$hachage;
+                         print $URL_NEWS;
+                         ?>">
 
-          </div>
-          <!-- barre de recherche youtube -->
-        <div id="placementrecherche">
-      <form action="http://www.youtube.com/results" method="get" target="_blank" >
-        <input name="search_query" type="text" />
-        <input type="submit" value="OK" />
-      </form>
+                         <?php
+      //Si le membre possède une image, on l'affiche
+
+      if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+      echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
+      }
+
+        ?></a>
+<!-- fin -->
+
     </div>
-     <!-- menu -->
-        <div id="placementmenu">
-    <?php include('../general/menu.php');?>
-        </div>
-      </div>
+    <!-- barre de recherche youtube qui va devenir une barre de recherche dans la bdd -->
+    <div id="placementrecherche">
+      <?php include("../general/search.php"); ?>
+    </div>
+   <!-- fin -->
+   <div id="placementmenu">
+      <?php include('../general/menu.php');?>
+   </div>
+ </div>
+
+ <div id="menu_tel">
+   <?php include('../general/menu1.php'); ?>
+ </div>
+ <!-- messages et commentaires poster sur le site-->
+ <div id="actu">
+   <div class="button_couleur">
+       <div class="button_1">
+       </div>
+       <div class="button_2">
+       </div>
+       <div class="button_3">
+       </div>
+     </div>
+  </div>
 <br />
 <br />
 <br />
@@ -80,7 +111,6 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
   <?php
     //on sélectionne tout les membres
     $membre = mysql_query("SELECT id, pseudo FROM LOGIN WHERE id ORDER BY pseudo ASC");
-
     if(mysql_num_rows($membre)<=1){
     echo '<label id="admin_menu1">Nombre d\'inscription : </label>'
     .mysql_num_rows($membre).' membre<br/>';
@@ -100,7 +130,6 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
          <select name="membre" onchange="javascript:submit(this)">
             <option value="Sélectionner un membre">Sélectionner un membre</option>';
         while($liste = mysql_fetch_array($membre)){
-
             echo '<option value="'.$liste['id'].'" ';
             if(isset($_POST["membre"]) && $_POST["membre"]==$liste['id'])
             {echo "selected='selected'";}
@@ -177,11 +206,11 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
         <br/>
         <?php
         //on affiche l'image du membre si il en possède une
-        
+
         if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
         echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
         }
-      
+
         ?>
 
     </div>
@@ -190,6 +219,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
                  <li><a href="admin.php?supmembre=<?php echo $id_membre;?>"
                    >Supprimer le membre <?php echo $pseudo_membre;?></a></li>
              </ul>
+
        <?php
         //on ferme if(isset($_POST["membre"]) && $_POST["membre"]!='Sélectionner un membre')
     }

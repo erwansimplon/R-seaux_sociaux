@@ -1,5 +1,7 @@
 <?php
-include("../bdd/connexion_bdd.php");
+session_start();
+
+include("../bdd/db.php");
 $req="SELECT * FROM LOGIN WHERE pseudo='".mysql_real_escape_string(stripcslashes($_SESSION['pseudo']))."'
 AND pass='".mysql_real_escape_string($_SESSION['pass'])."'
 AND valide='".mysql_real_escape_string(1)."'";
@@ -13,10 +15,12 @@ $_SESSION['id']=$msg['id'];
 }
 
 $id=$_SESSION['id'];
-
+$idlog=$_SESSION['id'];
 ?>
+
 <meta charset="utf-8"/>
 <link type="text/css" href="../css/admin-style.css" rel="stylesheet"/>
+
 <div id="cadre">
 <h1>Télécharger une image</h1><br />
 
@@ -92,7 +96,7 @@ $id=$_SESSION['id'];
                  $dossier_upload.$nom_de_l_image);
              }
              //on redirige vers la même page pour recharger l'image uploadé
-             $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+             $hachage = $_GET['id'];
              $URL_NEWS = "../general/page-user.php?id=".$hachage;
              header("location: $URL_NEWS");
          }
@@ -108,7 +112,7 @@ $id=$_SESSION['id'];
  {
      $nom=''.$dossier_upload.$_GET['nom'].'';
      unlink($nom);
-     $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+     $hachage = $_GET['id'];
      $URL_NEWS = "../general/page-user.php?id=".$hachage;
      header("location: $URL_NEWS");
  }
@@ -124,7 +128,7 @@ $id=$_SESSION['id'];
      </div>';
  }
  ?>
- <h2 id="lien"><a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+ <h2 id="lien"><a href="<?php $hachage = $_GET['id'];
                  $URL_NEWS = "page-user.php?id=".$hachage;
                   print $URL_NEWS;?>">Retour</a></h2>
 </div>

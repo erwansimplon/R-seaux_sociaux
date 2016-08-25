@@ -1,4 +1,99 @@
-@media all and (min-width: 800px) and (max-width: 1280px){
+@media all and (min-width: 0px) and (max-width: 400px){
+
+	ol {
+		list-style:none !important;
+		margin:0 auto !important;
+		width:100% !important;
+		margin-top: 20px !important;
+	}
+
+	 .li_msg {
+		 width:85% !important;
+	 }
+
+	 .li_user_msg {
+		 width: 85% !important;
+	 }
+
+	.Message{
+		font-size:30px !important;
+		font-weight:normal !important;
+		overflow:hidden !important;
+	}
+
+	.add_comment{
+		background-color:#f2f2f2 !important;
+		border-bottom:1px solid #e5eaf1 !important;
+		clear:left !important;
+		float:none !important;
+		overflow:hidden !important;
+		margin-bottom:2px !important;
+		padding:6px 4px 3px 6px !important;
+		width:85% !important;
+		height: 150px !important;
+		border:1px solid #BDC7D8 !important;
+		padding:3px !important;
+	}
+
+	.editbox{
+		overflow: hidden !important;
+		height: 61px !important;
+		border:solid 1px #0099CC !important;
+		width:85% !important;
+		font-size:30px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		padding:5px !important;
+		min-width:85% !important;
+		max-width:85% !important;
+	}
+
+	.comment_envoyer{
+		min-height:58px !important;
+		padding-bottom:8px !important;
+		position:relative !important;
+		width: 85% !important;
+	}
+
+	#text_comment {
+		width:50% !important;
+		margin-left: 5% !important;
+		margin-top: 1.7% !important;
+		height: 25px !important;
+	}
+
+	#POST{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px ;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		margin-top: 2px !important;
+		font-size: 20px !important;
+		width: auto !important;
+	}
+
+	#Envoyer{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:0px 0px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		height: 42px !important;
+		font-size: 20px !important;
+		margin-top: 1.5% !important;
+		width: auto !important;
+	}
+
+	#message_conteneur {
+		margin-top:10px !important;
+		margin-left: 0px !important;
+	}
+}
+@media all and (min-width: 400px) and (max-width: 500px){
 
 	ol {
 		list-style:none !important;
@@ -10,9 +105,13 @@
 	 .li_msg {
 		 width:95% !important;
 	 }
-	 
+
+	 .li_user_msg {
+		 width: 95% !important;
+	 }
+
 	.Message{
-		font-size:20px !important;
+		font-size:30px !important;
 		font-weight:normal !important;
 		overflow:hidden !important;
 	}
@@ -26,7 +125,7 @@
 		margin-bottom:2px !important;
 		padding:6px 4px 3px 6px !important;
 		width:95% !important;
-		height: 33px !important;
+		height: 51px !important;
 		border:1px solid #BDC7D8 !important;
 		padding:3px !important;
 	}
@@ -36,18 +135,325 @@
 		height: 61px !important;
 		border:solid 1px #0099CC !important;
 		width:95% !important;
-		font-size:20px !important;
+		font-size:30px !important;
 		font-family:Arial, Helvetica, sans-serif !important;
 		padding:5px !important;
 		min-width:95% !important;
 		max-width:95% !important;
 	}
-	
+
 	.comment_envoyer{
-		min-height:58px;
-		padding-bottom:8px;
-		position:relative;
-		width: 95%;
+		min-height:58px !important;
+		padding-bottom:8px !important;
+		position:relative !important;
+		width: 95% !important;
+	}
+
+	#text_comment {
+		width:50% !important;
+		margin-left: 5% !important;
+		margin-top: 1.7% !important;
+		height: 25px !important;
+	}
+
+	#POST{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px ;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		margin-top: 2px !important;
+		font-size: 20px !important;
+		width: auto !important;
+	}
+
+	#Envoyer{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:0px 0px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		height: 42px !important;
+		font-size: 15px !important;
+		margin-top: 1.5% !important;
+		width: auto !important;
+	}
+}
+
+@media all and (min-width: 500px) and (max-width: 800px){
+
+	ol {
+		list-style:none !important;
+		margin:0 auto !important;
+		width:100% !important;
+		margin-top: 20px !important;
+	}
+
+	 .li_msg {
+		 width:97% !important;
+	 }
+
+	 .li_user_msg {
+		 width: 97% !important;
+	 }
+
+	.Message{
+		font-size:30px !important;
+		font-weight:normal !important;
+		overflow:hidden !important;
+	}
+
+	.add_comment{
+		background-color:#f2f2f2 !important;
+		border-bottom:1px solid #e5eaf1 !important;
+		clear:left !important;
+		float:none !important;
+		overflow:hidden !important;
+		margin-bottom:2px !important;
+		padding:6px 4px 3px 6px !important;
+		width:97% !important;
+		height: 51px !important;
+		border:1px solid #BDC7D8 !important;
+		padding:3px !important;
+	}
+
+	.editbox{
+		overflow: hidden !important;
+		height: 61px !important;
+		border:solid 1px #0099CC !important;
+		width:97% !important;
+		font-size:30px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		padding:5px !important;
+		min-width:97% !important;
+		max-width:97% !important;
+	}
+
+	.comment_envoyer{
+		min-height:58px !important;
+		padding-bottom:8px !important;
+		position:relative !important;
+		width: 97% !important;
+	}
+
+	#text_comment {
+		width:50% !important;
+		margin-left: 5% !important;
+		margin-top: 1.7% !important;
+		height: 25px !important;
+	}
+
+	#POST{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px ;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		margin-top: 2px !important;
+		font-size: 20px !important;
+		width: auto !important;
+	}
+
+	#Envoyer{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		height: 42px !important;
+		font-size: 20px !important;
+		margin-top: 0.5% !important;
+		width: auto !important;
+	}
+}
+
+@media all and (min-width: 800px) and (max-width: 1280px){
+
+	ol {
+		list-style:none !important;
+		margin:0 auto !important;
+		width:100% !important;
+		margin-top: 20px !important;
+	}
+
+	 .li_msg {
+		 width:97% !important;
+	 }
+
+	 .li_user_msg {
+		 width: 97% !important;
+	 }
+
+	.Message{
+		font-size:30px !important;
+		font-weight:normal !important;
+		overflow:hidden !important;
+	}
+
+	.add_comment{
+		background-color:#f2f2f2 !important;
+		border-bottom:1px solid #e5eaf1 !important;
+		clear:left !important;
+		float:none !important;
+		overflow:hidden !important;
+		margin-bottom:2px !important;
+		padding:6px 4px 3px 6px !important;
+		width:97% !important;
+		height: 51px !important;
+		border:1px solid #BDC7D8 !important;
+		padding:3px !important;
+	}
+
+	.editbox{
+		overflow: hidden !important;
+		height: 61px !important;
+		border:solid 1px #0099CC !important;
+		width:97% !important;
+		font-size:30px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		padding:5px !important;
+		min-width:97% !important;
+		max-width:97% !important;
+	}
+
+	.comment_envoyer{
+		min-height:58px !important;
+		padding-bottom:8px !important;
+		position:relative !important;
+		width: 97% !important;
+	}
+
+	#text_comment {
+		width:50% !important;
+		margin-left: 5% !important;
+		margin-top: 1.7% !important;
+		height: 25px !important;
+	}
+
+	#POST{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px ;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		margin-top: 2px !important;
+		font-size: 20px !important;
+		width: auto !important;
+	}
+
+	#Envoyer{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		height: 42px !important;
+		font-size: 20px !important;
+		margin-top: 0.5% !important;
+		width: auto !important;
+	}
+}
+
+@media all and (min-width: 500px) and (max-width: 800px){
+
+	ol {
+		list-style:none !important;
+		margin:0 auto !important;
+		width:100% !important;
+		margin-top: 20px !important;
+	}
+
+	 .li_msg {
+		 width:97% !important;
+	 }
+
+	 .li_user_msg {
+		 width: 97% !important;
+	 }
+
+	.Message{
+		font-size:30px !important;
+		font-weight:normal !important;
+		overflow:hidden !important;
+	}
+
+	.add_comment{
+		background-color:#f2f2f2 !important;
+		border-bottom:1px solid #e5eaf1 !important;
+		clear:left !important;
+		float:none !important;
+		overflow:hidden !important;
+		margin-bottom:2px !important;
+		padding:6px 4px 3px 6px !important;
+		width:97% !important;
+		height: 51px !important;
+		border:1px solid #BDC7D8 !important;
+		padding:3px !important;
+	}
+
+	.editbox{
+		overflow: hidden !important;
+		height: 61px !important;
+		border:solid 1px #0099CC !important;
+		width:97% !important;
+		font-size:30px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		padding:5px !important;
+		min-width:97% !important;
+		max-width:97% !important;
+	}
+
+	.comment_envoyer{
+		min-height:58px !important;
+		padding-bottom:8px !important;
+		position:relative !important;
+		width: 97% !important;
+	}
+
+	#text_comment {
+		width:50% !important;
+		margin-left: 5% !important;
+		margin-top: 1.7% !important;
+		height: 25px !important;
+	}
+
+	#POST{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px ;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		margin-top: 2px !important;
+		font-size: 20px !important;
+		width: auto !important;
+	}
+
+	#Envoyer{
+		background-color: #006C87;
+		border: 1px solid #29447e;
+		padding:2px 16px !important;
+		font-family:Arial, Helvetica, sans-serif !important;
+		color:#FFFFFF !important;
+		float:right !important;
+		cursor:pointer !important;
+		height: 42px !important;
+		font-size: 20px !important;
+		margin-top: 0.5% !important;
+		width: auto !important;
 	}
 }
 
@@ -124,7 +530,7 @@ ol {
 	margin-bottom:2px;
 	padding:6px 4px 3px 6px;
 	width:600px;
-	height: 33px;
+	height: 51px;
 	border:1px solid #BDC7D8;
 	padding:3px;
 }
@@ -159,7 +565,7 @@ ol {
 }
 
 #POST{
-	background-color: #5B74A8;
+	background-color: #006C87;
 	border: 1px solid #29447e;
 	padding:2px 16px;
 	font-family:Arial, Helvetica, sans-serif;
@@ -167,10 +573,11 @@ ol {
 	float:right;
 	cursor:pointer;
 	margin-top: 2px;
+	width: auto !important;
 }
 
 #Envoyer{
-	background-color: #5B74A8;
+	background-color: #006C87;
 	border: 1px solid #29447e;
 	padding:2px 16px;
 	font-family:Arial, Helvetica, sans-serif;
@@ -178,6 +585,12 @@ ol {
 	float:right;
 	cursor:pointer;
 	height: 32px;
+	margin-top: 1.5%;
+	width: auto !important;
+}
+
+.envoyer-color{
+	background-color: #006C87.
 }
 
 #comment_post{
@@ -194,7 +607,7 @@ ol {
 #text_comment {
 	width:302px;
 	margin-left: 5%;
-	margin-top: 1%;
+	margin-top: 2%;
 }
 
 #message_conteneur {
@@ -204,4 +617,11 @@ ol {
 
 #largeur_input_comment {
 	width:302px;
+}
+
+#ok_recherche{
+	margin-left: 50px !important;
+	height: 70% !important;
+	width: 50px !important;
+	font-size: 20px !important;
 }

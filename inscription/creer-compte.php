@@ -9,36 +9,40 @@
     </head>
 
 <body>
+<div class="login">
+  <div class="login-apparence">
+    <div class="titre">
+      <h1>Créer un compte</h1>
+    </div>
+    <div class="login-form">
+      <form method="POST" action="#">
+        <div class="champ">
+          <input class="champ_pseudo" type="text" value="<?php if (!empty($_POST["pseudo"]))
+          { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); } ?>" placeholder="Pseudo" name="pseudo">
+          <label for="pseudo"></label>
+        </div>
 
-<div id="centre">
+        <div class="champ">
+          <input class="champ_pass" type="password" value="<?php if (!empty($_POST["motdepass"]))
+          { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); } ?>" placeholder="Mot de passe" name="motdepass">
+          <label for="pass"></label>
+        </div>
 
-<h1>Créer un compte</h1>
+        <div class="champ">
+          <input class="champ_pass" type="text" value="<?php if (!empty($_POST["email"]))
+          { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); } ?>" placeholder="Email" name="email">
+          <label for="email"></label>
+        </div>
 
-    <form method="POST" action="#">
-        <label for="pseudo">Pseudo : </label>
-            <input type="text" name="pseudo" maxlength="20"
-            value="<?php if (!empty($_POST["pseudo"]))
-                { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); } ?>" />
-                <br/>
-        <label for="pass">Mot de Passe : </label>
-            <input type="password" name="motdepass" maxlength="20"
-            value="<?php if (!empty($_POST["motdepass"]))
-                { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); } ?>" />
-                <br/>
-        <label for="email">Email : </label>
-            <input type="text" name="email" maxlength="50"
-            value="<?php if (!empty($_POST["email"]))
-                { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); } ?>" />
-                <br/>
-        <label for="action">Action : </label><input type="submit" name="Envoyer" value="Envoyer" />
-            <input name="Effacer" value="Effacer" type="reset" />
-    </form>
-<br/>
-
-<p id="lien"><a href="../index.php">Connexion</a> |
-  <a href="creer-compte.php">Créer un compte</a> |
-  <a href="identifiant-perdu.php">Identifiant perdu?</a></p>
-</div>
+        <input class="button_tel button_envoyer" type="submit" name="Envoyer" value="Envoyer" />
+        <br>
+        <br>
+        <input class="button_tel button_effacer" name="Effacer" value="Effacer" type="reset" />
+        <br>
+        <br>
+        <a class="pass_perdu button_lien" href="../index.php">Retour</a>
+        </div>
+      </div>
 
 <noscript>
   <div id="erreur">
@@ -46,7 +50,7 @@
        Veuillez activer JavaScript afin de profiter pleinement du site.
   </div>
 </noscript>
-
+</div>
 <?php
 if(isset($_POST['Envoyer'])){
     //si pseudo vide
@@ -98,12 +102,12 @@ if(isset($_POST['Envoyer'])){
          '".mysql_real_escape_string('0')."',
          '".mysql_real_escape_string('0')."',
          '".mysql_real_escape_string($date)."' ) ");
-         
+
 	//Si il y a une erreur
 	if (!$insert) {
 			die('Requête invalide : ' . mysql_error());
 			}
-			
+
 	//pas d'erreur d'enregistrement, on envoie un mail de confirmation
     	else {
 		//email de celui qui envoie
@@ -114,7 +118,7 @@ if(isset($_POST['Envoyer'])){
 		$subject = "Valider votre inscription";
 		//message
 		$msg  = "Bonjour ".stripcslashes($_POST['pseudo'])."<br/><br/>";
-		$msg .= "Veuillez confirmer votre inscription en cliquant sur le lien ci-joint 
+		$msg .= "Veuillez confirmer votre inscription en cliquant sur le lien ci-joint
 		<a href=\"http://".$_SERVER['HTTP_HOST']."/inscription/confirmation-inscription.php?pseudo="
 		.stripcslashes($_POST['pseudo'])."&email=".$_POST['email']."\">Confirmation</a><br/>";
 		$msg .= "Cordialement";

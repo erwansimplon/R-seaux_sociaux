@@ -5,11 +5,9 @@ session_start();
 if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     include("../bdd/connexion_bdd.php");
     connexion_bd();
-    //on va chercher tout ce qui correspond à l'utilisateur
-    $affiche = mysql_query("SELECT * FROM LOGIN WHERE pseudo='"
-    .mysql_real_escape_string(stripcslashes($_SESSION['pseudo']))."'
-    AND pass='".mysql_real_escape_string($_SESSION['pass'])."'
-    AND valide='".mysql_real_escape_string(1)."'");
+    $idlog=$_SESSION['id'];
+        //on va chercher tout ce qui correspond à l'utilisateur
+    $affiche = mysql_query("SELECT * FROM LOGIN WHERE id=$idlog");
     $result = mysql_fetch_assoc($affiche);
     //http://php.net/manual/fr/function.extract.php
     extract($result);
@@ -22,8 +20,9 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     }
     //on libère le résultat de la mémoire
     mysql_free_result($affiche);
+    $id=$_GET['id'];
     ?>
-    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,41 +30,48 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="fr" />
         <link type="text/css" href="../css/admin-style.css" rel="stylesheet"/>
+        <link rel="icon" type="image/png" href="../auth-photos/icon.jpg" />
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="scriptcouleur.js" ></script>
         <title>Profil de <?php echo $_SESSION['pseudo'] ?></title>
     </head>
 
-<body>
+<body class="body">
 
 <div id="cadre">
   <div id="photo-profil">
-    <a href="image-profil.php"><?php
+    <a href="<?php $hachage = $id;
+        $URL_NEWS = "image-profil.php?id=".$hachage;
+        print $URL_NEWS;?>"><?php
   //Si le membre possède une image, on l'affiche
 
   if (file_exists('../auth-photos/profil/'.$id.$image.'images.jpg')){
-  echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/profil/'.$id.$image.'images.jpg'.'"/>';
+  echo '<img class="avatar img_profil" style="float:left;" alt="avatar" src="../auth-photos/profil/'.$id.$image.'images.jpg'.'"/>';
   }
 
     ?></a>
   </div>
   <div id="couverture-profil">
-    <a href="couverture-profil.php"><?php
+    <a href="<?php $hachage = $id;
+        $URL_NEWS = "couverture-profil.php?id=".$hachage;
+        print $URL_NEWS;?>"><?php
   //Si le membre possède une image, on l'affiche
 
   if (file_exists('../auth-photos/couverture/'.$id.$image.'images.jpg')){
-  echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/couverture/'.$id.$image.'images.jpg'.'"/>';
+  echo '<img class="avatar img_couverture" style="float:left;" alt="avatar" src="../auth-photos/couverture/'.$id.$image.'images.jpg'.'"/>';
   }
 
     ?></a>
   </div>
-    <div id="recherche">
+    <div class="rech">
         <div id="accueil">
-            <a href="<?php $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
+            <a href="<?php $hachage = $id;
                 $URL_NEWS = "user.php?id=".$hachage;
                 print $URL_NEWS;?>"><?php
           //Si le membre possède une image, on l'affiche
 
 		if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-		echo '<img class="avatar" style="float:left;" alt="avatar" 
+		echo '<img class="avatar" style="float:left;" alt="avatar"
 		src="../auth-photos/'.$id.$image.'images.jpg'.'"/>';
 		}
 
@@ -74,15 +80,27 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
 
         </div>
         <div id="placementrecherche">
-            <form action="http://www.youtube.com/results" method="get" target="_blank" >
-                <input name="search_query" type="text" />
-                <input id="ok" type="submit" value="OK" />
-            </form>
-       </div>
+          <?php include("search.php"); ?>
+          <a href="<?php $hachage = $id;
+              $URL_NEWS = "add_amis.php?id=".$hachage;
+              print $URL_NEWS;?>">ajouter</a>
+        </div>
        <div id="placementmenu">
           <?php include('menu.php');?>
        </div>
+       </div>
+     <div id="menu_tel">
+       <?php include('menu1.php'); ?>
      </div>
+     <div id="actu">
+       <div class="button_couleur">
+           <div class="button_1">
+           </div>
+           <div class="button_2">
+           </div>
+           <div class="button_3">
+           </div>
+        </div>
      <div id="actu">
            <?php include('../user/actu.php'); ?>
      </div>
@@ -90,7 +108,6 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
             <?php include('messagerie.php');?>
      </div>
   </div>
-
 </div>
 </body>
 </html>

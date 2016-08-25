@@ -12,7 +12,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     AND pass='".mysql_real_escape_string($_SESSION['pass'])."'
     AND valide='".mysql_real_escape_string(1)."'");
     $result = mysql_fetch_assoc($affiche);
-    
+
     extract($result);
     //si le membre est banni en cours de session, on l’éjecte
     if($valide==2){
@@ -23,6 +23,7 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     }
     //on libère le résultat de la mémoire
     mysql_free_result($affiche);
+    $idlog=$_SESSION['id'];
     ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -31,10 +32,12 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta http-equiv="Content-Language" content="fr" />
             <link type="text/css" href="../css/admin-style.css" rel="stylesheet"/>
+            <link type="text/css" href="../css/style-index.css" rel="stylesheet"/>
+
             <title>Modification de votre profil</title>
             <script type="text/javascript">
                 <!--
-                /*     Fonction permettant d'afficher le message de chargement lors de l'upload de l'image.     
+                /*     Fonction permettant d'afficher le message de chargement lors de l'upload de l'image.
                 Cette fonction permet également de cacher certains éléments pendant le temps de chargement.     */
                 function Verif_attente(id_attente)
                 {
@@ -62,63 +65,199 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
           </script>
     </head>
 
-    <body>
+    <body class="body">
 
     <div id="cadre">
-      <div id="recherche">
+      <div class="rech">
           <div id="accueil">
-            <a href="page-user.php"><?php
-            //Si le membre possède une image, on l'affiche
+            <a href="<?php
+    //        $hachage = $id."&idlog=".$idlog;
+    $hachage = $id;
+    //$hachage2 = $monid_ami."&id=".$id;
+                          $URL_NEWS = "page-user.php?id=".$hachage;
+                             print $URL_NEWS;
+                             ?>">
 
-            if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-            echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
-            }
+                             <?php
+          //Si le membre possède une image, on l'affiche
+
+          if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
+          echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
+          }
 
             ?></a>
 
           </div>
-        <div id="placementrecherche">
-      <form action="http://www.youtube.com/results" method="get" target="_blank" >
-        <input name="search_query" type="text" />
-        <input type="submit" value="OK" />
-      </form>
-    </div>
+          <div id="placementrecherche">
+            <?php include("search.php"); ?>
+          </div>
         <div id="placementmenu">
             <?php include('menu.php');?>
         </div>
       </div>
-<br />
-<br />
-<br />
-<br />
+      <div id="menu_tel">
+        <?php include('menu1.php'); ?>
+      </div>
+      <div class="login">
+        <div class="login-apparence">
+          <div class="titre">
+            <h1 class="change_taille_h1 taille_h1">Modification de votre profil</h1>
+          </div>
+          <div class="login-form">
+            <form method="POST" action="#">
+              <div class="champ">
+                <input class="champ_pseudo" type="text" value="<?php if (!empty($_POST["pseudo"]))
+                    { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); }
+                    else{ echo htmlspecialchars(utf8_encode($pseudo)); } ?>" placeholder="Pseudo" name="pseudo">
+                <label for="pseudo"></label>
+              </div>
 
-    <h1>Modification de votre profil</h1>
-<br />
-<br />
-<br />
+              <div class="champ">
+                <input class="champ_pass" type="password" value="<?php if (!empty($_POST["motdepass"]))
+                    { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); }
+                    else{ echo htmlspecialchars(utf8_encode($pass)); } ?>" placeholder="Mot de passe" name="motdepass">
+                <label for="pass"></label>
+              </div>
 
-    <form method="POST" action="#">
-        <label for="pseudo">Pseudo : </label>
-            <input type="text" name="pseudo" maxlength="20"
-            value="<?php if (!empty($_POST["pseudo"]))
-                { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_QUOTES)); }
-                else{ echo htmlspecialchars(utf8_encode($pseudo)); } ?>" /><br/>
-        <label for="pass">Mot de Passe : </label>
-            <input type="text" name="motdepass" maxlength="20"
-            value="<?php if (!empty($_POST["motdepass"]))
-                { echo stripcslashes(htmlspecialchars($_POST["motdepass"],ENT_QUOTES)); }
-                else{ echo htmlspecialchars(utf8_encode($pass)); } ?>" /><br/>
-        <label for="email">Email : </label>
-            <input type="text" name="email" maxlength="50"
-            value="<?php if (!empty($_POST["email"]))
-                { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); }
-                else{ echo htmlspecialchars($email); } ?>" /><br/>
-        <label for="action">Action : </label>
-            <input type="submit" name="Envoyer" value="Envoyer" />
-            <input name="Effacer" value="Effacer" type="reset" />
-    </form>
-    <br/>
-    
+              <div class="champ">
+                <input class="champ_pass" type="text" value="<?php if (!empty($_POST["email"]))
+                    { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); }
+                    else{ echo htmlspecialchars($email); } ?>" placeholder="Email" name="email">
+                <label for="email"></label>
+              </div>
+              <br>
+              <h2>Télécharger une image</h2>
+              <br>
+               <form enctype="multipart/form-data" action="" method="post"
+               onsubmit="Verif_attente('message_attente')" id="upload">
+                       <input class="button_pos_photo" name="uploadFile" type="file" />
+                       <input type="submit" name="photo" id="photo" class="button_tel button_effacer" value="Envoyer la photo" /><br/>
+               </form>
+               <br>
+            <!--ci-dessous s'affiche le message d'attente lors de l'upload d'une image-->
+            <div id="message_attente"></div>
+            <br>
+            <?php
+            //traitement de l'image
+               //dossier d'upload
+               $dossier_upload = '../auth-photos/';
+               if(isset($_POST['photo'])){
+
+                   if(isset($_FILES['uploadFile']) && $_FILES['uploadFile']['error'] == 0) {
+                       unset($erreur);
+                       //extensions autorisées
+                       $extensions_ok = array('jpg', 'jpeg', 'JPG');
+                       // vérifications
+                       //in_array — Indique si une valeur appartient à un tableau
+                       //substr — Retourne un segment de chaîne
+                       //strrchr — Trouve la dernière occurrence d'un caractère dans une chaîne
+                       if( !in_array(substr(strrchr($_FILES['uploadFile']['name'], '.'), 1), $extensions_ok ) )
+                       {
+                           $erreur = '<div class="erreur">Veuillez sélectionner un fichier de type jpg !</div>';
+                       }
+                       //si pas d'erreur
+                       if(!isset($erreur))
+                       {
+                           //L'image prend le numéro de l'identifiant comme nom et on oblige
+                           //l’extension en jpg
+                           $nom_de_l_image = $idlog.$image.'images.jpg';
+
+                           // Récupération des infos de l'image
+                           $img_infos = getimagesize($_FILES['uploadFile']['tmp_name']);
+
+                           // Largeur de l'image
+                           $img_width = $img_infos[0];
+                           //echo '$img_width = '.$img_width.'<br>';
+                           // Hauteur de l'image
+                           $img_height = $img_infos[1];
+                           //echo '$img_height = '.$img_height.'<br>';
+
+                           //Dimension souhaité de l'image
+                           $redimension_width = 30;
+                           $redimension_height = 30;
+
+                           //si la hauteur ou la largeur de l'image sont plus grandes que celle souhaité
+                           if($img_width > $redimension_width || $img_height > $redimension_height){
+                               //imagecreatefromjpeg — Crée une nouvelle image
+                               $source = imagecreatefromjpeg($_FILES['uploadFile']['tmp_name']);
+                               //imagecreatetruecolor — Crée une nouvelle image en couleurs vraies
+                               $destination = imagecreatetruecolor($redimension_width, $redimension_height);
+                               // Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d'une image
+                               $largeur_source = imagesx($source);
+                               $hauteur_source = imagesy($source);
+                               $nouvelle_largeur = imagesx($destination);
+                               $nouvelle_hauteur = imagesy($destination);
+                               //imagecopyresampled — Copie, redimensionne, ré-échantillonne une image
+                               imagecopyresampled($destination, $source, 0, 0, 0, 0, $nouvelle_largeur,
+                               $nouvelle_hauteur, $largeur_source, $hauteur_source);
+                               // On enregistre l'image réduite au format jpg
+                               imagejpeg($destination, $dossier_upload.$nom_de_l_image);
+                           }
+                           //si l'image à une taille inférieure à celle souhaité, on enregistre sans modification
+                           else {
+                               move_uploaded_file($_FILES['uploadFile']['tmp_name'],
+                               $dossier_upload.$nom_de_l_image);
+                           }
+                           //on redirige vers la même page pour recharger l'image uploadé
+                           header("location: $hachage = $idlog;
+                                           $URL_NEWS = user-modification.php;
+                                            print $URL_NEWS;");
+                       }
+                   }
+               }
+
+               //si il y a des erreurs
+               if(isset($erreur)){
+                   echo $erreur;
+               }
+              /*Suppression de l'image*/
+               //Si $_GET['nom'] existe, on supprime le fichier...
+               if(isset($_GET['nom']) && $_GET['nom']==$idlog.$image.'images.jpg')
+               {
+                   $nom=''.$dossier_upload.$_GET['nom'].'';
+                   unlink($nom);
+                   echo '<script type="text/javascript">
+                             window.setTimeout("location=(\'user-modification.php\');",100)
+                         </script>';
+               }
+
+               /*Fin de suppression de l'image*/
+               //si l'image existe, on l'affiche avec un lien pour la supprimer et un bouton pour recharger la page
+               if (file_exists('../auth-photos/'.$idlog.$image.'images.jpg')){
+                   echo '<div>
+                   <img align="middle" class="avatar" alt="avatar" src="../auth-photos/'.$idlog.$image.'images.jpg'.'"/>
+                   <a title="Supprimer cette image" href="image-profil.php?nom='.$idlog.$image.'images.jpg'.'">« Supprimer »</a>
+                   <br/>
+                   <span id="cache">Si l\'image ne s\'actualise pas,
+                   <button onclick="javascript:location.reload();">Recharger la page</button>
+                   </span></div>';
+               }
+
+               ?>
+
+            </div>
+              <noscript>
+                <div class="erreur">
+                  <b>Votre navigateur ne prend pas en charge JavaScript!</b>
+                Veuillez activer JavaScript afin de profiter pleinement du site.
+                </div>
+              </noscript>
+              <br>
+              <div class="info">Image au format « jpg » uniquement.
+                L'image sera redimensionné automatiquement en 30*30.
+                Une image trop volumineuse ne sera pas pris en charge!</div>
+                <br/>
+
+
+              <br>
+              <br>
+              <input class="button_tel button_envoyer button_dim_admin" type="submit" name="Envoyer" value="Envoyer" />
+              <input class="button_tel button_effacer button_dim_admin" name="Effacer" value="Effacer" type="reset" />
+
+              <br>
+              <br>
+
+
     <?php
     if(isset($_POST['Envoyer'])){
         //si pseudo vide
@@ -182,127 +321,6 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
         }
     }
     ?>
-    
-    <h2>Télécharger une image</h2>
-
-     <div class="info">Image au format « jpg » uniquement.
-       L'image sera redimensionné automatiquement en 30*30.
-       Une image trop volumineuse ne sera pas pris en charge!</div>
-
-     <form enctype="multipart/form-data" action="#" method="post"
-     onsubmit="Verif_attente('message_attente')" id="upload">
-         <label for="photo">Image :</label>
-             <input name="uploadFile" type="file" />
-             <input type="submit" name="photo" id="photo" value="Envoyer la photo" /><br/>
-     </form>
-
- <!--ci-dessous s'affiche le message d'attente lors de l'upload d'une image-->
- <div id="message_attente" style="margin-left: 350px;"></div>
-
- <?php
- //traitement de l'image
-     //dossier d'upload
-     $dossier_upload = '../auth-photos/';
-     if(isset($_POST['photo'])){
-         
-         if(isset($_FILES['uploadFile']) && $_FILES['uploadFile']['error'] == 0) {
-             unset($erreur);
-             //extensions autorisées
-             $extensions_ok = array('jpg', 'jpeg', 'JPG');
-             // vérifications
-             //in_array — Indique si une valeur appartient à un tableau
-             //substr — Retourne un segment de chaîne
-             //strrchr — Trouve la dernière occurrence d'un caractère dans une chaîne
-             if( !in_array(substr(strrchr($_FILES['uploadFile']['name'], '.'), 1), $extensions_ok ) )
-             {
-                 $erreur = '<div class="erreur">Veuillez sélectionner un fichier de type jpg !</div>';
-             }
-             //si pas d'erreur
-             if(!isset($erreur))
-             {
-                 //L'image prend le numéro de l'identifiant comme nom et on oblige
-                 //l’extension en jpg
-                 $nom_de_l_image = $id.$image.'images.jpg';
-
-                 // Récupération des infos de l'image
-                 $img_infos = getimagesize($_FILES['uploadFile']['tmp_name']);
-
-                 // Largeur de l'image
-                 $img_width = $img_infos[0];
-                 //echo '$img_width = '.$img_width.'<br>';
-                 // Hauteur de l'image
-                 $img_height = $img_infos[1];
-                 //echo '$img_height = '.$img_height.'<br>';
-
-                 //Dimension souhaité de l'image
-                 $redimension_width = 30;
-                 $redimension_height = 30;
-
-                 //si la hauteur ou la largeur de l'image sont plus grandes que celle souhaité
-                 if($img_width > $redimension_width || $img_height > $redimension_height){
-                     //imagecreatefromjpeg — Crée une nouvelle image
-                     $source = imagecreatefromjpeg($_FILES['uploadFile']['tmp_name']);
-                     //imagecreatetruecolor — Crée une nouvelle image en couleurs vraies
-                     $destination = imagecreatetruecolor($redimension_width, $redimension_height);
-                     // Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d'une image
-                     $largeur_source = imagesx($source);
-                     $hauteur_source = imagesy($source);
-                     $nouvelle_largeur = imagesx($destination);
-                     $nouvelle_hauteur = imagesy($destination);
-                     //imagecopyresampled — Copie, redimensionne, ré-échantillonne une image
-                     imagecopyresampled($destination, $source, 0, 0, 0, 0, $nouvelle_largeur,
-                     $nouvelle_hauteur, $largeur_source, $hauteur_source);
-                     // On enregistre l'image réduite au format jpg
-                     imagejpeg($destination, $dossier_upload.$nom_de_l_image);
-                 }
-                 //si l'image à une taille inférieure à celle souhaité, on enregistre sans modification
-                 else {
-                     move_uploaded_file($_FILES['uploadFile']['tmp_name'],
-                     $dossier_upload.$nom_de_l_image);
-                 }
-                 //on redirige vers la même page pour recharger l'image uploadé
-                 echo '<script type="text/javascript">
-                           window.setTimeout("location=(\'user-modification.php\');",100)
-                       </script>';
-             }
-         }
-     }
-
-     //si il y a des erreurs
-     if(isset($erreur)){
-         echo $erreur;
-     }
-    /*Suppression de l'image*/
-     //Si $_GET['nom'] existe, on supprime le fichier...
-     if(isset($_GET['nom']) && $_GET['nom']==$id.$image.'images.jpg')
-     {
-         $nom=''.$dossier_upload.$_GET['nom'].'';
-         unlink($nom);
-         echo '<script type="text/javascript">
-                   window.setTimeout("location=(\'user-modification.php\');",100)
-               </script>';
-     }
-
-     /*Fin de suppression de l'image*/
-     //si l'image existe, on l'affiche avec un lien pour la supprimer et un bouton pour recharger la page
-     if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-         echo '<div style="margin-left: 350px;">
-         <img align="middle" class="avatar" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg'.'"/>
-         <a title="Supprimer cette image" href="user-modification.php?nom='.$id.$image.'images.jpg'.'">« Supprimer »</a>
-         <br/>
-         <span id="cache">Si l\'image ne s\'actualise pas,
-         <button onclick="javascript:location.reload();">Recharger la page</button>
-         </span></div>';
-     }
-
-     ?>
-</div>
-    <noscript>
-      <div class="erreur">
-        <b>Votre navigateur ne prend pas en charge JavaScript!</b>
-      Veuillez activer JavaScript afin de profiter pleinement du site.
-      </div>
-    </noscript>
 
 </body>
 </html>

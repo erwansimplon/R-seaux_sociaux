@@ -7,30 +7,39 @@
 <title>Identifiant perdu</title>
 <link rel="stylesheet" href="../css/style-index.css" type="text/css" media="screen" />
 <body>
+  <div class="login">
+    <div class="login-apparence">
+      <div class="titre">
+        <h1>Identifiant-Perdu</h1>
+      </div>
+      <div class="login-form">
+        <form method="POST" action="#">
+          <div class="champ">
+            <input class="champ_pass" type="text" value="<?php if (!empty($_POST["email"]))
+            { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); } ?>" placeholder="Email" name="email">
+            <label for="email"></label>
+          </div>
+          <br>
+          <br>
+          <input class="button_tel button_envoyer" type="submit" name="Envoyer" value="Envoyer" />
 
-<div id="centre">
-<h1>Identifiant perdu</h1>
-  <form method="POST" action="#">
-  <label for="email">Email : </label><input type="text" name="email" maxlength="50" 
-  value="<?php if (!empty($_POST["email"])) { echo stripcslashes(htmlspecialchars($_POST["email"],ENT_QUOTES)); } ?>" /><br/>
-  <label for="action">Action : </label><input type="submit" name="Envoyer" value="Envoyer" />
-  <input name="Effacer" value="Effacer" type="reset" />
-  </form>
-  <br/>
-	<p id="lien"><a href="../index.php">Connexion</a> | 
-	<a href="creer-compte.php">Créer un compte</a> | 
-	<a href="identifiant-perdu.php">Identifiant perdu?</a></p>
-	</div>
+          <br>
+          <br>
+          <a class="pass_perdu button_lien" href="../index.php">Retour</a>
+          </div>
+        </div>
 
-	<noscript>
-		<div id="erreur">
-			<b>Votre navigateur ne prend pas en charge JavaScript!</b> 
-			Veuillez activer JavaScript afin de profiter pleinement du site.
-		</div>
-	</noscript>
+  <noscript>
+    <div id="erreur">
+      <b>Votre navigateur ne prend pas en charge JavaScript!</b>
+         Veuillez activer JavaScript afin de profiter pleinement du site.
+    </div>
+  </noscript>
+  </div>
+
 
   <?php
-  //on vérifie le mail saisi par l'utilisateur puis on va chercher en base de données le pseudo et mots de passe correspondant 
+  //on vérifie le mail saisi par l'utilisateur puis on va chercher en base de données le pseudo et mots de passe correspondant
   //à l'email et on envoie le tout par email.
   if(isset($_POST['Envoyer'])){
       //si l'email vide
@@ -78,9 +87,9 @@
                   mail($a_qui_j_envoie, $subject, $msg, $mailheaders);
                   //on laisse un message de confirmation
                   echo '<div id="ok">Vos identifiants ont été envoyé sur votre boite email.</div>
-                  
-		<script type="text/javascript"> 
-			window.setTimeout("location=(\'../index.php?recup=ok\');",30) 
+
+		<script type="text/javascript">
+			window.setTimeout("location=(\'../index.php?recup=ok\');",30)
 		</script>';
               }
           }

@@ -1,3 +1,7 @@
+<?php
+include("../bdd/db.php");
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -10,9 +14,9 @@
   <body>
 
   <div class="chat_box">
-	<div class="chat_head">Channel</div>
+	<div class="chat_head">Chanel</div>
 		<div class="chat_body">
-			<div class="user">  
+			<div class="user">
 			<?php
             			$membre = mysql_query("SELECT `id`,`pseudo` FROM `LOGIN` WHERE id=6");
         			while($liste = mysql_fetch_array($membre)){
@@ -26,7 +30,7 @@
         </div>
 
 	<div class="chat_body1">
-		<div class="user1">  
+		<div class="user1">
 		<?php
     			$membre = mysql_query("SELECT `id`,`pseudo` FROM `LOGIN` WHERE id=16");
     			while($liste = mysql_fetch_array($membre)){
@@ -40,7 +44,7 @@
         </div>
 
 	<div class="chat_body2">
-		<div class="user2">  
+		<div class="user2">
 		<?php
       			$membre = mysql_query("SELECT `id`,`pseudo` FROM `LOGIN` WHERE id=8");
       			while($liste = mysql_fetch_array($membre)){
@@ -69,14 +73,11 @@
 
           	?>
           	</div>
-          	
+
         	<div class="msg_body">
 
             	<?php
 
-            	header("Content-Type: text/html; charset=utf-8");
-            	mysql_connect("localhost","u539698594_root","erwan01250");
-            	mysql_select_db("u539698594_test");
             	if (isset($_POST['message']));
             	{
                 	if (empty($_POST['message']));
@@ -86,14 +87,14 @@
                     		VALUES('$message', '".time()."')");
                 	}
             	}
-            	
+
             	$reponse = mysql_query("SELECT * FROM minichat");
             	while($val = mysql_fetch_array($reponse))
             	{
             	echo '<p class ="msg_a">
             	à '.date('H\:i',$val['timestamp']).' : '. htmlentities(stripslashes($val['message'])) .'</p>';
             	}
-            	
+
             	?>
 
             	<div class="msg_footer" id="message">
@@ -104,7 +105,7 @@
 
                     		<label class ="message_P" for="message">Message :</label>
                     		<textarea class="msg_input" rows="4" type="text" name="message" id="message_P"></textarea>
-                    		<input type="submit" value="Envoyer" />
+                    		<input class="env_msg" type="submit" value="Envoyer" />
 
                 	</p>
 
@@ -131,9 +132,6 @@
 
              	<?php
 
-             	header("Content-Type: text/html; charset=utf-8");
-             	mysql_connect("localhost","u539698594_root","erwan01250");
-             	mysql_select_db("u539698594_test");
              	if (isset($_POST['message']));
              	{
                 	if (empty($_POST['message']));
@@ -149,7 +147,7 @@
              		echo '<p class ="msg_a">
              		à '.date('H\:i',$val['timestamp']).' : '. htmlentities(stripslashes($val['message'])) .'</p>';
              	}
-             	
+
              	?>
 
              	<div class="msg_footer" id="message">
@@ -160,7 +158,7 @@
 
                      		<label class ="message_P" for="message">Message :</label>
                      		<textarea class="msg_input" rows="4" type="text" name="message" id="message_P"></textarea>
-                     		<input type="submit" value="Envoyer" />
+                     		<input class="env_msg" type="submit" value="Envoyer" />
 
                  	</p>
 
@@ -183,15 +181,11 @@
                       	?>
 
 	</div>
-	
+
 	<div class="msg_body2">
 
 
 		<?php
-
-		header("Content-Type: text/html; charset=utf-8");
-		mysql_connect("localhost","u539698594_root","erwan01250");
-		mysql_select_db("u539698594_test");
 
 		if (isset($_POST['message']));
 		{
@@ -208,7 +202,7 @@
   			echo '<p class ="msg_a">
   			à '.date('H\:i',$val['timestamp']).' : '. htmlentities(stripslashes($val['message'])) .'</p>';
 		}
-		
+
 		?>
 
 	<div class="msg_footer" id="message">
@@ -219,7 +213,7 @@
 
         		<label class ="message_P" for="message">Message :</label>
         		<textarea class="msg_input" rows="4" type="text" name="message" id="message_P"></textarea>
-        		<input type="submit" value="Envoyer" />
+        		<input class="env_msg" type="submit" value="Envoyer" />
 
     		</p>
 
