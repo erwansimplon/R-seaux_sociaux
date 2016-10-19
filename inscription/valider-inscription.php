@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+  include("../function/structure.php");
+  html();
+?>
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; UTF-8" />
-        <meta http-equiv="Content-Language" content="fr" />
-        <link rel="stylesheet" href="../css/style-index.css" type="text/css" media="screen" />
+        <?php head_style_index(); ?>
         <title>Valider votre inscription</title>
     </head>
 
@@ -70,12 +70,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
   <a href="identifiant-perdu.php">Identifiant perdu?</a></p>
 </div>
 
-<noscript>
-  <div id="erreur">
-    <b>Votre navigateur ne prend pas en charge JavaScript!</b>
-  Veuillez activer JavaScript afin de profiter pleinement du site.
-  </div>
-</noscript>
+<?php erreur(); ?>
 
 </body>
 </html>

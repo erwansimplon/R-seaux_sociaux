@@ -1,525 +1,3 @@
-@media all and (min-width: 0px) and (max-width: 535px){
-
-	h1{
-		font-size: 25px !important;
-	}
-
-	input[type=submit],input[type=reset]{
-		margin-right:0px !important;
-	}
-
-	label{
-		text-align: right;
-		width: 100px;
-		padding-right: 20px;
-	}
-
-	* {
-	box-sizing: border-box;
-	}
-
-	*:focus {
-		outline: none;
-	}
-	 {
-	font-family: Arial;
-	background-color: #3498DB;
-	padding: 50px;
-	}
-
-	input {
-	text-align: center;
-	background-color: #ECF0F1;
-	border: 2px solid transparent !important;
-	border-radius: 3px;
-	font-size: 16px;
-	font-weight: 200;
-	padding: 10px 0;
-	width: 250px;
-	transition: border .5s;
-	}
-
-	input:focus {
-	border: 2px solid #3498DB !important;
-	box-shadow: none;
-	}
-
-	.button_envoyer{
-		width: 100% !important;
-		margin-left: 0% !important;
-		font-weight:bold !important;
-		display: block !important;
-	}
-
-	.button_effacer{
-		width: 100% !important;
-		font-weight:bold !important;
-		display: block !important;
-	}
-
-	.login {
-	margin: 20px auto !important;
-	margin-top: 30% !important;
-	width: auto !important;
-	}
-
-	.login-apparence {
-	background-color: #FFF !important;
-	padding: 20px !important;
-	border-radius: 5px !important;
-	}
-
-	.titre {
-	text-align: center !important;
-	color: #777 !important;
-	}
-
-	.login-form {
-	text-align: center !important;
-	}
-
-	.champ {
-	margin-bottom: 10px !important;
-	}
-
-	.champ_pseudo{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.champ_pass{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.button_tel {
-	  border: 2px solid transparent !important;
-	  background: #3498DB !important;
-	  color: #ffffff !important;
-	  font-size: 16px !important;
-	  line-height: 25px !important;
-	  padding: 10px 0 !important;
-	  text-decoration: none !important;
-	  text-shadow: none !important;
-	  border-radius: 3px !important;
-	  box-shadow: none !important;
-	  transition: 0.25s !important;
-	  margin: 5px auto !important;
-	}
-
-	.button_lien{
-		display: inline-block;
-		width: 32.9%;
-		margin-top: 10px !important;
-	}
-
-	.button_tel:hover {
-	  background-color: #2980B9 !important;
-	}
-
-	.login-lien-pc {
-	  font-size: 12px !important;
-	  color: #444 !important;
-	  display: block !important;
-		margin-top: 12px !important;
-	}
-}
-
-@media all and (min-width: 536px) and (max-width: 699px){
-
-	h1{
-		font-size: 30px !important;
-	}
-
-	label{
-		text-align: right;
-		width: 100px;
-		padding-right: 20px;
-	}
-
-	* {
-	box-sizing: border-box;
-	}
-
-	*:focus {
-		outline: none;
-	}
-	body {
-	font-family: Arial;
-	background-color: #3498DB;
-	padding: 50px;
-	}
-
-	.body{
-		padding: 0px !important;
-		width: 100%;
-		margin-left: -0.5px;
-	}
-
-	input {
-	text-align: center;
-	background-color: #ECF0F1;
-	border: 2px solid transparent !important;
-	border-radius: 3px;
-	font-size: 16px;
-	font-weight: 200;
-	padding: 10px 0;
-	width: 250px;
-	transition: border .5s;
-	}
-
-	input:focus {
-	border: 2px solid #3498DB !important;
-	box-shadow: none;
-	}
-
-	.button_envoyer{
-		width: 48.4% !important;
-		margin-left: 0.6% !important;
-		font-weight:bold !important;
-		margin-right: 5px !important;
-	}
-
-	.button_effacer{
-		width: 48.4% !important;
-		font-weight:bold !important;
-	}
-
-	.login {
-	margin: 20px auto !important;
-	margin-top: 30% !important;
-	width: auto !important;
-	}
-
-	.login-apparence {
-	background-color: #FFF !important;
-	padding: 20px !important;
-	border-radius: 5px !important;
-	}
-
-	.titre {
-	text-align: center !important;
-	color: #777 !important;
-	}
-
-	.login-form {
-	text-align: center !important;
-	}
-
-	.champ {
-	margin-bottom: 10px !important;
-	}
-
-	.champ_pseudo{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.champ_pass{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.button_tel {
-	  border: 2px solid transparent !important;
-	  background: #3498DB !important;
-	  color: #ffffff !important;
-	  font-size: 16px !important;
-	  line-height: 25px !important;
-	  padding: 10px 0 !important;
-	  text-decoration: none !important;
-	  text-shadow: none !important;
-	  border-radius: 3px !important;
-	  box-shadow: none !important;
-	  transition: 0.25s !important;
-	}
-
-	.button_lien{
-		display: inline-block;
-		width: 32.9%;
-		margin-top: 10px !important;
-	}
-
-	.button_tel:hover {
-	  background-color: #2980B9 !important;
-	}
-
-	.login-lien-pc {
-	  font-size: 12px !important;
-	  color: #444 !important;
-	  display: block !important;
-		margin-top: 12px !important;
-	}
-
-	.button_env_photo{
-		width: 75% !important;
-	}
-}
-
-@media all and (min-width: 700px) and (max-width: 799px){
-
-	h1{
-		font-size: 50px !important;
-	}
-
-	label{
-		text-align: right;
-		width: 100px;
-		padding-right: 20px;
-	}
-
-	* {
-		box-sizing: border-box;
-	}
-
-	*:focus {
-		outline: none;
-	}
-	body {
-	font-family: Arial;
-	background-color: #3498DB;
-	padding: 50px;
-	}
-
-	.body{
-		padding: 0px !important;
-		width: 100%;
-		margin-left: -0.5px;
-	}
-
-	input {
-	text-align: center;
-	background-color: #ECF0F1;
-	border: 2px solid transparent !important;
-	border-radius: 3px;
-	font-size: 16px;
-	font-weight: 200;
-	padding: 10px 0;
-	width: 250px;
-	transition: border .5s;
-	}
-
-	input:focus {
-	border: 2px solid #3498DB !important;
-	box-shadow: none;
-	}
-
-	.button_envoyer{
-		width: 48.4% !important;
-		margin-left: 0.6% !important;
-		font-weight:bold !important;
-		margin-right: 5px !important;
-	}
-
-	.button_effacer{
-		width: 48.4% !important;
-		font-weight:bold !important;
-	}
-
-	.login {
-	margin: 20px auto !important;
-	margin-top: 30% !important;
-	width: auto !important;
-	}
-
-	.login-apparence {
-	background-color: #FFF !important;
-	padding: 20px !important;
-	border-radius: 5px !important;
-	}
-
-	.titre {
-	text-align: center !important;
-	color: #777 !important;
-	}
-
-	.login-form {
-	text-align: center !important;
-	}
-
-	.champ {
-	margin-bottom: 10px !important;
-	}
-
-	.champ_pseudo{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.champ_pass{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.button_tel {
-	  border: 2px solid transparent !important;
-	  background: #3498DB !important;
-	  color: #ffffff !important;
-	  font-size: 25px !important;
-	  line-height: 25px !important;
-	  padding: 10px 0 !important;
-	  text-decoration: none !important;
-	  text-shadow: none !important;
-	  border-radius: 3px !important;
-	  box-shadow: none !important;
-	  transition: 0.25s !important;
-	  margin: 0 auto;
-	}
-
-	.button_lien{
-		display: inline-block;
-		width: 32.9%;
-		margin-top: 10px !important;
-	}
-
-	.button_tel:hover {
-	  background-color: #2980B9 !important;
-	}
-
-	.login-lien-pc {
-	  font-size: 12px !important;
-	  color: #444 !important;
-	  display: block !important;
-		margin-top: 12px !important;
-	}
-}
-
-@media all and (min-width: 800px) and (max-width: 1304px){
-
-	label{
-		text-align: right;
-		width: 100px;
-		padding-right: 20px;
-	}
-
-	* {
-	box-sizing: border-box;
-	}
-
-	*:focus {
-		outline: none;
-	}
-	body {
-	font-family: Arial;
-	background-color: #3498DB;
-	padding: 50px;
-	}
-
-	.body{
-		padding: 0px !important;
-		width: 100%;
-		margin-left: -0.5px;
-	}
-
-	input {
-	text-align: center;
-	background-color: #ECF0F1;
-	border: 2px solid transparent !important;
-	border-radius: 3px;
-	font-size: 25px !important;
-	font-weight: 200;
-	padding: 10px 0;
-	width: 250px;
-	transition: border .5s;
-	}
-
-	input:focus {
-	border: 2px solid #3498DB !important;
-	box-shadow: none;
-	}
-
-	.button_envoyer{
-		width: 48.4% !important;
-		margin-left: 0.6% !important;
-		font-weight:bold !important;
-		margin-right: 5px !important;
-	}
-
-	.button_effacer{
-		width: 48.4% !important;
-		font-weight:bold !important;
-	}
-
-	.login {
-	margin: 20px auto !important;
-	margin-top: 30% !important;
-	width: auto !important;
-	}
-
-	.login-apparence {
-	background-color: #FFF !important;
-	padding: 20px !important;
-	border-radius: 5px !important;
-	}
-
-	.titre {
-	text-align: center !important;
-	color: #777 !important;
-	}
-
-	.login-form {
-	text-align: center !important;
-	}
-
-	.champ {
-	margin-bottom: 10px !important;
-	}
-
-	.champ_pseudo{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.champ_pass{
-		width: 98.2% !important;
-		margin-left: 1% !important;
-	}
-
-	.button_tel {
-	  border: 2px solid transparent !important;
-	  background: #3498DB !important;
-	  color: #ffffff !important;
-	  font-size: 25px !important;
-	  line-height: 25px !important;
-	  padding: 10px 0 !important;
-	  text-decoration: none !important;
-	  text-shadow: none !important;
-	  border-radius: 3px !important;
-	  box-shadow: none !important;
-	  transition: 0.25s !important;
-	  margin: 0 auto;
-	}
-
-	.button_lien{
-		display: inline-block;
-		width: 32.9%;
-		margin-top: 10px !important;
-	}
-
-	.button_tel:hover {
-	  background-color: #2980B9 !important;
-	}
-
-	.login-lien-pc {
-	  font-size: 12px !important;
-	  color: #444 !important;
-	  display: block !important;
-		margin-top: 12px !important;
-	}
-}
-
-@media all and (min-width: 1305px) and (max-width: 1420px){
-
-	.button_lien{
-		display: inline-block;
-		width: 32.9%;
-		margin-top: 10px !important;
-	}
-
-	.button_envoyer{
-		margin-right: 5px !important;
-	}
-}
 #erreur{
 	background:#F11A57;
 	color : #FFF;
@@ -545,10 +23,10 @@
 }
 
 #ok_recherche{
-	margin-left: 50px !important;
-	height: 70% !important;
-	width: 50px !important;
-	font-size: 20px !important;
+	margin-left: 50px;
+	height: 70%;
+	width: 50px;
+	font-size: 20px;
 }
 
 h1{
@@ -563,49 +41,48 @@ label{
 	padding-right: 20px;
 }
 
-* {
-box-sizing: border-box;
+*{
+	box-sizing: border-box;
 }
 
-*:focus {
+*:focus{
 	outline: none;
 }
-body {
-font-family: Arial;
-background-color: #3498DB;
-padding: 50px;
+
+body{
+	font-family: Arial;
+	background-color: #3498DB;
+	padding: 50px;
 }
 
 .body{
-	padding: 0px !important;
+	padding: 0px;
 	width: 100%;
 	margin-left: -0.5px;
 }
 
-input {
-text-align: center;
-background-color: #ECF0F1;
-border: 2px solid transparent;
-border-radius: 3px;
-font-size: 16px;
-font-weight: 200;
-padding: 10px 0;
-width: 250px;
-transition: border .5s;
+input{
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
 }
 
-input:focus {
-border: 2px solid #3498DB;
-box-shadow: none;
-outline: none;
+input:focus{
+	border: 2px solid #3498DB;
+	box-shadow: none;
+	outline: none;
 }
 
 .button_envoyer{
 	width: 48.4%;
-	margin-left: 0px;
 	font-weight:bold;
-	clear: left !important;
-	margin-left: 0.6%;
+	clear: left;
 	outline: none;
 }
 
@@ -615,41 +92,49 @@ outline: none;
 	outline: none;
 }
 
-.login {
-margin: 20px auto;
-margin-top: 5%;
-width: 50%;
+.login{
+	margin: 20px auto;
+	margin-top: 5%;
+	width: 50%;
 }
 
-.login-apparence {
-background-color: #FFF;
-padding: 20px;
-border-radius: 5px;
+.login-apparence{
+	background-color: #FFF;
+	padding: 20px;
+	border-radius: 5px;
 }
 
-.titre {
-text-align: center;
-color: #777;
+.titre{
+	text-align: center;
+	color: #777;
 }
 
-.login-form {
-text-align: center;
+.logo-index{
+	margin-top: -13%;
+	width: 38%;
+	margin-left: 0%;
+	margin-bottom: -2%;
 }
 
-.champ {
-margin-bottom: 10px;
+.login-form{
+	text-align: center;
+}
+
+.champ{
+	margin-bottom: 10px;
 }
 
 .champ_pseudo{
-	width: 98.2% !important;
-	margin-left: 1% !important;
+	width: 98.2%;
+	margin-left: 1%;
 }
 
 .champ_pass{
-	width: 98.2% !important;
-	margin-left: 1% !important;
+	width: 98.2%;
+	margin-left: 1%;
 }
-.button_tel {
+
+.button_tel{
 	border: 2px solid transparent;
 	background: #3498DB;
 	color: #ffffff;
@@ -675,13 +160,115 @@ margin-bottom: 10px;
 	width: 100%;
 }
 
-.button_tel:hover {
+.button_tel:hover{
 	background-color: #2980B9;
 }
 
-.login-lien-pc {
+.login-lien-pc{
 	font-size: 12px;
 	color: #444;
 	display: block;
 	margin-top: 12px;
+}
+
+@media only screen and (max-width : 535px){
+
+	h1{
+		font-size: 25px;
+	}
+
+	input[type=submit],input[type=reset]{
+		margin-right:0px;
+	}
+
+	.button_tel{
+		margin-bottom: 5px;
+	}
+
+	.login{
+	width: auto;
+	}
+
+	.button_envoyer{
+		width: 100%;
+	}
+
+	.button_effacer{
+		width: 100%;
+	}
+
+	.logo-index{
+		margin-top: 0%;
+	}
+
+}
+
+@media only screen and (min-width: 536px) and (max-width: 699px){
+
+	h1{
+		font-size: 40px;
+	}
+
+	.login{
+		width: auto;
+	}
+
+	.button_envoyer{
+		width: 100%;
+		display: block;
+	}
+
+	.button_effacer{
+		width: 100%;
+		display: block;
+	}
+
+	.button_tel{
+	  font-size: 25px;
+		margin: 5px auto;
+	}
+
+	.button_env_photo{
+		width: 75%;
+	}
+
+	.logo-index{
+		margin-top: 0%;
+	}
+}
+
+@media only screen and (min-width: 700px) and (max-width: 799px){
+
+	h1{
+		font-size: 50px;
+	}
+
+	.login{
+		width: auto;
+	}
+
+	.logo-index{
+		margin-top: 0%;
+	}
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1304px){
+
+	input{
+	font-size: 25px;
+	}
+
+	.login{
+		margin-top: 30%;
+		width: auto;
+	}
+
+	.button_tel{
+	  font-size: 25px;
+	  margin: 0 auto;
+	}
+
+	.button_lien{
+		margin-top: 10px;
+	}
 }

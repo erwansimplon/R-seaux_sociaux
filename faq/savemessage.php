@@ -1,4 +1,3 @@
-
 <?php
 //va cherche le fichier connexion a la bdd
 include("../bdd/connexion_bdd.php");
@@ -10,8 +9,7 @@ $req="SELECT * FROM LOGIN WHERE pseudo='".mysql_real_escape_string(stripcslashes
 AND pass='".mysql_real_escape_string($_SESSION['pass'])."'
 AND valide='".mysql_real_escape_string(1)."'";
 
-$monid=$_GET['idlog'];
-print $monid;
+
 print "recup session = $req";
 
 $affiche = mysql_query($req);
@@ -27,7 +25,7 @@ $id=$_SESSION['id'];
 //capture le message envoyer par l'utilisateur
 $msgcon=$_POST['message'];
 // envoie les donner dans la bdd
-$req="INSERT INTO messages (message, idLog) VALUES ('".htmlentities(addslashes($msgcon))."', '$monid')";
+$req="INSERT INTO faq (message, idLog) VALUES ('".htmlentities(addslashes($msgcon))."', '$id')";
 //test
 print $req;
 print "<br>pseudo = ".$_SESSION['pseudo'];
@@ -35,7 +33,7 @@ print "<br>id = ".$id;
 // fin test
 mysql_query($req);
 // redirige vers la page initial
-$hachage = $monid;
-$URL_NEWS = "../user/user.php?id=".$hachage;
+$hachage = $id;
+$URL_NEWS = "faq.php?id=".$hachage;
 header("location: $URL_NEWS");
 ?>

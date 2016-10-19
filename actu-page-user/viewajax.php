@@ -8,24 +8,24 @@ AND valide='".mysql_real_escape_string(1)."'";
 
 $affiche = mysql_query($req);
 //$result = mysql_fetch_assoc($affiche);
+
 while($msg=mysql_fetch_array($affiche, MYSQL_ASSOC))
 {
 	$_SESSION['id']=$msg['id'];
 	$idLog=$msg['idLog'];
 	$pseudo=$msg['pseudo'];
-
 }
 
 $ids=$_SESSION['id'];
+
 ?>
  <?php
- // va chercher mon fichier bdd
-
 if(isset($_POST['msg_id']))
 {
 $id=$_POST['msg_id'];
-
-$com=mysql_query("SELECT DISTINCT l.pseudo, c.com_id, c.comments, c.msg_id_fk, c.idlog FROM LOGIN AS l INNER JOIN comments AS c ON l.id = c.idLog INNER JOIN msg AS m ON l.id = m.idLog where c.msg_id_fk='$id' order by c.com_id ASC");
+$url_id=$_POST['id'];
+$url_pseudo=$_POST['pseudo'];
+$com=mysql_query("SELECT DISTINCT l.pseudo, c.com_id, c.comments, c.msg_id_fk, c.idlog FROM LOGIN AS l INNER JOIN comm AS c ON l.id = c.idLog INNER JOIN msg AS m ON l.id = m.idLog where c.msg_id_fk='$id' order by c.com_id ASC");
 while($r=mysql_fetch_array($com))
 {
 $c_id=$r['com_id'];
@@ -39,7 +39,12 @@ $ps=$r['pseudo'];
 		<div  class="comment_actual_text">
 			<img class="avatar" src="../photos/miniature/<?php print $idLog_com; ?>images.jpg" />
 			<div id="comment_post"><b><?php echo $ps.'</b><br>'.$comment; ?></div>
-			<a href="../actu/delete_comment.php?com_id=<?php echo $c_id; ?>"><h3 class="suppr_msg">X</h3></a>
+			<?php if($ids == $url_id){ ?>
+				<a href="../actu-page-user/delete_comment_user.php?com_id=<?php echo $c_id; ?>&id=<?php echo $url_id; ?>"><h3 class="suppr_msg">X</h3></a>
+			<?php }
+			else{ ?>
+			<a href="../actu-page-user/delete_comment_user.php?com_id=<?php echo $c_id; ?>&id=<?php echo $url_id; ?>&pseudo=<?php echo $url_pseudo; ?>"><h3 class="suppr_msg">X</h3></a>
+			<?php } ?>
 		</div>
 	</div>
 </div>
@@ -52,8 +57,7 @@ $ps=$r['pseudo'];
 <div class="add_comment">
 	<div>
 		<img class="avatar" src="../photos/miniature/<?php print $idLog_com; ?>images.jpg" id="profil_img" />
-
-		<form action="../actu/savecomment.php" method="post">
+		<form action="../actu-page-user/savecomment.php?idlog=<?php echo $url_id;?>&pseudo=<?php echo $url_pseudo; ?>" method="post">
 			<input name="mesgid" type="hidden" value="<?php echo $id ?>" />
 			<input name="mcomment" type="text" placeholder="..." id="text_comment" />
 			<input id="Envoyer" class="envoyer-color" name="" type="submit" value="Envoyer" />

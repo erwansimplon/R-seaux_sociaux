@@ -16,9 +16,9 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
     if(mysql_num_rows($affiche) == 0)
     {
       echo 'Il n\'y a rien à voir ici!';
-
-      $hachage = sha1("id=".$rows['id']."&pseudo=".$rows['pseudo']);
-      $URL_NEWS = "../general/user.php?id=".$hachage;
+      $ids=$_SESSION['id'];
+      $hachage = $ids;
+      $URL_NEWS = "../user/user.php?id=".$hachage;
       header("location:".$URL_NEWS);
     }
 
@@ -26,98 +26,78 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['pass'])){
       //on libère le résultat de la mémoire
    mysql_free_result($affiche);
    $idlog=$_SESSION['id'];
+include("../function/structure.php");
+html();
+head_admin_style();
 ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Content-Language" content="fr" />
-    <title>Administration</title>
-    <link type="text/css" href="../css/admin-style.css" rel="stylesheet"/>
-    <link rel="icon" type="image/png" href="../auth-photos/icon.jpg" />
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script type="text/javascript" src="../general/scriptcouleur.js" ></script>
-    <title>Profil de <?php echo $_SESSION['pseudo'] ?></title>
-</head>
 
 <body class="body">
 <!-- affiche le cadre blanc -->
-<div id="cadre">
+  <div id="cadre">
 <!-- affiche la l'image la barre de recherche et le menu dans une div bleu -->
-<div class="rech">
+    <div class="rech">
 
   <!--</div>-->
     <!-- affiche l'image de profil et redirige vers la page privé de la personne
     avec l'id et le pseudo qui se balade dans l'url en crypter -->
-    <div id="accueil">
+      <div id="accueil">
         <a href="<?php
-//        $hachage = $id."&idlog=".$idlog;
-$hachage = $idlog;
-//$hachage2 = $monid_ami."&id=".$id;
-                      $URL_NEWS = "../general/page-user.php?id=".$hachage;
-                         print $URL_NEWS;
-                         ?>">
+          $hachage = $idlog;
+          $URL_NEWS = "../page-user/page-user.php?id=".$hachage;
+          print $URL_NEWS;
+        ?>">
 
-                         <?php
+        <?php
       //Si le membre possède une image, on l'affiche
 
-      if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-      echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
-      }
+          if (file_exists('../photos/miniature/'.$id.$image.'images.jpg')){
+          echo '<img class="avatar" style="float:left;" alt="avatar" src="../photos/miniature/'.$id.$image.'images.jpg"/>';
+          }
 
         ?></a>
 <!-- fin -->
 
-    </div>
+      </div>
     <!-- barre de recherche youtube qui va devenir une barre de recherche dans la bdd -->
-    <div id="placementrecherche">
-      <?php include("../general/search.php"); ?>
-    </div>
+      <div id="placementrecherche">
+        <?php include("../recherche/search.php"); ?>
+      </div>
    <!-- fin -->
-   <div id="placementmenu">
-      <?php include('../general/menu.php');?>
-   </div>
- </div>
+      <div id="placementmenu">
+        <?php include('../menu/menu.php');?>
+      </div>
+    </div>
 
- <div id="menu_tel">
-   <?php include('../general/menu1.php'); ?>
- </div>
+    <div id="menu_tel">
+      <?php include('../menu/menu1.php'); ?>
+    </div>
  <!-- messages et commentaires poster sur le site-->
- <div id="actu">
-   <div class="button_couleur">
-       <div class="button_1">
-       </div>
-       <div class="button_2">
-       </div>
-       <div class="button_3">
-       </div>
-     </div>
-  </div>
-<br />
-<br />
-<br />
-<br />
-    <h1>Administration</h1>
-<br />
-<br />
-<br />
+    <div>
+      <h1 class="titre_admin_page">Administration</h1>
+      <div class="button_couleur button_couleur_fixed">
+        <div class="button_1">
+        </div>
+        <div class="button_2">
+        </div>
+        <div class="button_3">
+        </div>
+      </div>
+    </div>
 
-  <p id="admin_menu2">Ajouter un utilisateur: <a href="add-user.php">
-    <button> OK</button></a></p>
+  <p id="admin_menu2"><a class="titre_admin_menu1" href="add-user.php">
+    Ajouter un utilisateur</a></p>
 
 <form name="form" method="POST">
   <?php
     //on sélectionne tout les membres
     $membre = mysql_query("SELECT id, pseudo FROM LOGIN WHERE id ORDER BY pseudo ASC");
     if(mysql_num_rows($membre)<=1){
-    echo '<label id="admin_menu1">Nombre d\'inscription : </label>'
-    .mysql_num_rows($membre).' membre<br/>';
+      echo '<label id="admin_menu1"><p class="titre_admin_menu1"></label>'
+      .mysql_num_rows($membre).' membres</p><br/>';
     }
     if(mysql_num_rows($membre)>1){
-    echo '<label id="admin_menu1">Nombre d\'inscriptions : </label>'
-    .mysql_num_rows($membre).' membres<br/>';
+    echo '<label id="admin_menu1"><p class="titre_admin_menu1"></label>'
+    .mysql_num_rows($membre).' membres</p><br/>';
     }
     //si pas de résultat
     if(mysql_num_rows($membre) == 0)
@@ -126,8 +106,7 @@ $hachage = $idlog;
     }
     //si résultat, on case les membres dans une liste
     else{
-    echo '<label id="admin_menu" for="membre">Sélection du Membre : </label>
-         <select name="membre" onchange="javascript:submit(this)">
+    echo '<div class="test_form"><select class="select_user" name="membre" onchange="javascript:submit(this)">
             <option value="Sélectionner un membre">Sélectionner un membre</option>';
         while($liste = mysql_fetch_array($membre)){
             echo '<option value="'.$liste['id'].'" ';
@@ -163,10 +142,10 @@ $hachage = $idlog;
 		value="<?php echo htmlspecialchars($pass_membre);?>" /><br/>
 
         <label for="email">Email : </label>
-        <input type="text" name="email" maxlength="50"
+        <input class="input_mail" type="text" name="email" maxlength="50"
 		value="<?php echo htmlspecialchars($email_membre);?>" /><br/>
 
-        <label for="validation">Validation : </label>
+        <label class="label_validation" for="validation">Validation : </label>
         <select name="validation">
         <option value="0" <?php if($valide_membre==0)
         { echo "selected='selected'"; }?>>Non validé</option>
@@ -174,21 +153,21 @@ $hachage = $idlog;
         { echo "selected='selected'"; }?>>Validé</option>
         <option value="2" <?php if($valide_membre==2)
         { echo "selected='selected'"; }?>>Banni</option>
-        </select><br/>
+        </select>
 
-        <label for="statut">Statut : </label>
+        <label class="label_statut" for="statut">Statut : </label>
         <select name="statut">
         <option value="0" <?php if($statut_membre==0)
         echo "selected='selected'";?>>Membre</option>
         <option value="1" <?php if($statut_membre==1)
         echo "selected='selected'";?>>Admin</option>
-        </select><br/>
+        </select>
 
         <?php
         //si le membre a une image, on affiche un formulaire permettant de garder ou
         //supprimer celle-ci
-        if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-            echo '<label for>Supprimer l\'image :</label>
+        if (file_exists('../photos/miniature/'.$id.$image.'images.jpg')){
+            echo '<label class="label_statut">Supprimer l\'image :</label>
             <select name="image" />
                  <option value="non">Non</option>
                  <option value="oui">Oui</option>
@@ -196,30 +175,26 @@ $hachage = $idlog;
         }
         ?>
 
-        <label for="pseudo">Inscrit le : </label>
-        <?php echo $date_membre;?><br/>
+        <label for="pseudo">Inscrit le :</label>
+        <?php echo '<p class="date_form_admin">'.$date_membre.'</p>';?><br/>
 
-        <label for="action">Action : </label>
-        <input type="submit" name="Envoyer" value="Envoyer" />
-        <input name="Effacer" value="Effacer" type="reset" />
+        <input class="env_admin" type="submit" name="Envoyer" value="Envoyer" />
+        <input class="effa_admin" name="Effacer" value="Effacer" type="reset" />
         </form>
         <br/>
         <?php
         //on affiche l'image du membre si il en possède une
 
-        if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-        echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$id.$image.'images.jpg"/>';
+        if (file_exists('../photos/miniature/'.$id.$image.'images.jpg')){
+        echo '<img class="avatar" style="float:left;" alt="avatar" src="../photos/miniature/'.$id.$image.'images.jpg"/>';
         }
 
         ?>
 
-    </div>
          <h2>Supprimer le membre <?php echo $pseudo_membre;?></h2>
-             <ul style="margin-left: 350px;">
                  <li><a href="admin.php?supmembre=<?php echo $id_membre;?>"
                    >Supprimer le membre <?php echo $pseudo_membre;?></a></li>
-             </ul>
-
+          </div>
        <?php
         //on ferme if(isset($_POST["membre"]) && $_POST["membre"]!='Sélectionner un membre')
     }
@@ -234,8 +209,8 @@ $hachage = $idlog;
             //si ok
             else{
             //si le membre a une image, on la supprime
-        if (file_exists('../auth-photos/'.$id.$image.'images.jpg')){
-            unlink('../auth-photos/'.$id.$image.'images.jpg');
+        if (file_exists('../photos/miniature/'.$id.$image.'images.jpg')){
+            unlink('../photos/miniature/'.$id.$image.'images.jpg');
         }
         //on informe et on redirige
         echo '<div class="ok">Membre supprimé avec succès. Redirection en cours...</div>
@@ -310,9 +285,9 @@ $hachage = $idlog;
             }
            else{
                 //on supprime l'image si besoin
-                if (file_exists('../auth-photos/'.$id.$image.'images.jpg') && $_POST['image']=="oui")
+                if (file_exists('../photos/miniature/'.$id.$image.'images.jpg') && $_POST['image']=="oui")
                 {
-                    unlink('../auth-photos/'.$id.$image.'images.jpg');
+                    unlink('../photos/miniature/'.$id.$image.'images.jpg');
                 }
                 //message de confirmation
                 echo '<div class="ok">
@@ -324,14 +299,11 @@ $hachage = $idlog;
             }
         }
     }
-    ?>
-    <noscript>
-      <div class="erreur">
-        <b>Votre navigateur ne prend pas en charge JavaScript!</b>
-      Veuillez activer JavaScript afin de profiter pleinement du site.
-      </div>
-    </noscript>
 
+    erreur();
+    ?>
+
+      </div>
     </body>
 </html>
 <?php

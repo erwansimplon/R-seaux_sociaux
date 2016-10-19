@@ -1,50 +1,18 @@
 <?php
-$req="SELECT * FROM LOGIN WHERE pseudo='".mysql_real_escape_string(stripcslashes($_SESSION['pseudo']))."'
-AND pass='".mysql_real_escape_string($_SESSION['pass'])."'
-AND valide='".mysql_real_escape_string(1)."'";
+session_start();
 
-$affiche = mysql_query($req);
-//$result = mysql_fetch_assoc($affiche);
-while($msg=mysql_fetch_array($affiche, MYSQL_ASSOC))
-{
-	$_SESSION['id']=$msg['id'];
-}
+select_header();
 
 $id=$_SESSION['id'];
-
+$url_id = $_GET['id'];
+html();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" href="../css/actu-style.css" type="text/css" media="screen"/>
-		<!-- ajax pour les messages et commentaires envoyer par l'utilisateur -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
-		<script type="text/javascript">
-			$(function()
-			{
-			$(".view_comments").click(function()
-			{
+		<?php
+			head_actu_style();
+			ajax();
+	  ?>
 
-			var ID = $(this).attr("id");
-
-			$.ajax({
-			type: "POST",
-			url: "../actu/viewajax.php",
-			data: "msg_id="+ ID,
-			cache: false,
-			success: function(html){
-			$("#view_comments"+ID).prepend(html);
-			$("#view"+ID).remove();
-			$("#two_comments"+ID).remove();
-			}
-			});
-
-			return false;
-			});
-			});
-		</script>
 		<!-- fin ajax -->
 	</head>
 
@@ -53,19 +21,22 @@ $id=$_SESSION['id'];
 	<ol>
 	<!-- formulaire pour que l'utilisateur puisse taper son message et l'envoyer -->
 		<li class="li_msg">
-			<form action="../actu/savemessage.php" method="post">
+			<form action="../actu/savemessage.php?idlog=<?php echo $url_id; ?>" method="post">
 				<textarea class="editbox" cols="23" rows="3" name="message"></textarea><br />
-				<input id="POST" name="POST" type="submit" value="POST" />
+				<input id="POST" name="POST" type="submit" value="Publier" />
 			</form>
 		</li>
 	<!-- fin -->
 				<?php
 				// recupération du fichier connection
-				include("../bdd/db.php");
+				connexion_bd();
 					// jointure qui relie l'utilisateurs a c'est message
-					$req="SELECT DISTINCT l.pseudo, m.msg_id, m.message, m.idLog FROM LOGIN AS l INNER JOIN messages AS m ON l.id = m.idLog order by m.msg_id DESC";
+					$req="SELECT * FROM LOGIN LEFT JOIN amis ON LOGIN.id = amis.IdLog LEFT JOIN messages ON LOGIN.id = messages.IdLog where LOGIN.id=$id AND messages.msg_id IS NOT NULL or amis.idami=$id AND messages.msg_id IS NOT NULL GROUP BY messages.msg_id order by messages.msg_id DESC";
+					// $req="SELECT DISTINCT l.pseudo, m.msg_id, m.jointure, m.message, m.idLog, a.idami FROM LOGIN AS l INNER JOIN messages AS m ON l.id = $url_id INNER JOIN amis AS a ON a.idami = m.idLog order by m.msg_id DESC";
 					// $req ="insert into messages (message, IdLog) VALUES ('Mon message','$id')";
-
+//Select l.id, l.pseudo, a.IdLog, m.IdLog, m.message from LOGIN as l, amis AS a, messages AS m where (l.id=m.IdLog) or (l.id=6 and a.IdLog=l.id) Group By l.pseudo
+//Select l.id, l.pseudo, a.IdLog, m.IdLog, m.message from LOGIN as l, amis AS a, messages AS m where (l.id=m.IdLog) or ((l.id=6 and a.IdLog=l.id) or (l.id=6 and a.idami=l.id)) Group By l.pseudo
+//Select l.id, l.pseudo, a.IdLog as IdLogAmi, a.idami, m.IdLog as IdLogMessage, m.message from LOGIN as l, amis AS a, messages AS m where (l.id=m.IdLog) or ((l.id=6 and a.IdLog=l.id) or (l.id=6 and a.idami=l.id)) Group By l.pseudo
 					$msql=mysql_query($req);
 
 
@@ -73,7 +44,7 @@ $id=$_SESSION['id'];
 						while($msg=mysql_fetch_array($msql, MYSQL_ASSOC))
 						{
 							$id_msg=$msg['msg_id'];
-							$msgcontent=$msg['message'];
+							$msgcontent=strip_tags($msg['message']);
 				?>
 						<!-- structure des message poster par l'utilisateur -->
 						<li class="comment_envoyer">
@@ -83,25 +54,32 @@ $id=$_SESSION['id'];
 								<h3 class="Message" >
 
 									<?php
-									$idLog=$msg['idLog'];
+									$idLog=$msg['IdLog'];
 									$pseudo=$msg['pseudo'];
 									//Si le membre possède une image, on l'affiche
 
-									if (file_exists('../auth-photos/'.$idLog.$image.'images.jpg')){
-										echo '<img class="avatar" style="float:left;" alt="avatar" src="../auth-photos/'.$idLog.$image.'images.jpg"/>';
+									if (file_exists('../photos/miniature/'.$idLog.$image.'images.jpg')){
+										echo '<img class="avatar" style="float:left;" alt="avatar" src="../photos/miniature/'.$idLog.$image.'images.jpg"/>';
 									}
-
+									else {
+									echo '<img class="avatar" style="float:left;" alt="avatar" src="../photos/miniature/'.$image.'images.jpg"/>';
+								}
 
 									$idm=$msg['pseudo'];
-									print '<strong>'.$idm.'</strong>';//affiche le pseudo en gras
+									if ($id == $idLog){
+									?>
+									<a href="../actu/delete_message.php?msg_id=<?php echo $id_msg; ?>"><h3 class="suppr_msg">X</h3></a>
+									<?php } ?>
+									<a href="<?php $hachage = $idLog;
+			                $URL_NEWS = "../page-user/page-user.php?id=".$hachage."&pseudo=".$idm;
+			                print $URL_NEWS;?>"><?php print '<p><strong>'.$idm.'</strong></p></a>';//affiche le pseudo en gras
 									echo '<br>'.$msgcontent; //affiche le message
 									?>
-
 									<div id="message_conteneur">
 
 										<?php
 										// affiche les commentaires dessous du message correspondant
-										$sql=mysql_query("SELECT DISTINCT * from comments where msg_id_fk='$id_msg' order by com_id");
+										$sql=mysql_query("SELECT DISTINCT l.pseudo, c.com_id, c.comments, c.msg_id_fk, c.idlog FROM LOGIN AS l INNER JOIN comments AS c ON l.id = c.idLog where c.msg_id_fk='$id_msg' order by c.com_id ASC");
 										$comment_count=mysql_num_rows($sql);
 
 
@@ -115,8 +93,8 @@ $id=$_SESSION['id'];
 
 											<div class="comment_ui" id="view<?php echo $id_msg; ?>">
 												<div>
-													<a href="#" class="view_comments" id="<?php echo $id_msg; ?>">
-														Voir les <?php echo $comment_count; ?> autres commentaires</a>
+													<a href="#" class="view_comments" id="<?php echo $id_msg; ?>"><p>
+														Voir les <?php echo $comment_count; ?> autres commentaires</p></a>
 												</div>
 											</div>
 
@@ -133,30 +111,34 @@ $id=$_SESSION['id'];
 											<div id="two_comments<?php echo $id_msg; ?>">
 
 												<?php
-													$listsql=mysql_query("SELECT DISTINCT * from comments where msg_id_fk='$id_msg' order by com_id limit $second_count,2 ");
+													$listsql=mysql_query("SELECT DISTINCT l.pseudo, c.com_id, c.comments, c.msg_id_fk, c.idlog FROM LOGIN AS l INNER JOIN comments AS c ON l.id = c.IdLog where c.msg_id_fk='$id_msg' order by c.com_id ASC limit $second_count,2 ");
 
 													while($rowsmall=mysql_fetch_array($listsql))
 													{
 														$c_id=$rowsmall['com_id'];
-														$comment=$rowsmall['comments'];
-												?>
+														$comment=strip_tags($rowsmall['comments']);
+														$idLog_com=$rowsmall['idlog'];
+														$ps=$rowsmall['pseudo'];
+														?>
 
-												<div class="comment_ui">
+																<div class="comment_ui">
 
-													<div class="comment_text">
-
-														<div  class="comment_actual_text">
-
-															<?php
-			        									//Si le membre possède une image, on l'affiche
-
-																if (file_exists('../auth-photos/'.$idLog.$image.'images.jpg')){
-																	echo '<img class="avatar" style="float:left;" alt="avatar"
-																	src="../auth-photos/'.$idLog.$image.'images.jpg"/>';
-																}
-
+																<div class="comment_text">
+																	<div  class="comment_actual_text">
+																		<?php if($id == $idLog_com){ ?>
+																		<a href="../actu/delete_comment.php?com_id=<?php echo $c_id; ?>"><h3 class="suppr_msg">X</h3></a>
+																		<?php
+																		}
+																		//Si le membre possède une image, on l'affiche
+																		if (file_exists('../photos/miniature/'.$idLog_com.$image.'images.jpg')){
+																		echo '<img class="avatar" style="float:left;" alt="avatar"
+																		src="../photos/miniature/'.$idLog_com.$image.'images.jpg"/>';
+																		}
+																		else {
+																		echo '<img class="avatar" style="float:left;" alt="avatar" src="../photos/miniature/'.$image.'images.jpg"/>';
+																	}
 															?>
-															<div id="comment_post"><?php echo $comment; ?></div>
+															<div id="comment_post"><b><?php echo $ps.'</b><br>'.$comment; ?></div>
 														</div>
 													</div>
 												</div>
@@ -169,11 +151,13 @@ $id=$_SESSION['id'];
 														<?php
 														//Si le membre possède une image, on l'affiche
 
-														if (file_exists('../auth-photos/'.$idLog.$image.'images.jpg')){
+														if (file_exists('../photos/miniature/'.$id.$image.'images.jpg')){
 															echo '<img class="avatar" style="float:left;" alt="avatar"
-															src="../auth-photos/'.$idLog.$image.'images.jpg"/>';
+															src="../photos/miniature/'.$id.$image.'images.jpg"/>';
 														}
-
+														else {
+														echo '<img class="avatar" style="float:left;" alt="avatar" src="../photos/miniature/'.$image.'images.jpg"/>';
+													}
 														?>
 														<!-- formulaire qui permet a l'utilisateur d'écrire un commentaire -->
 

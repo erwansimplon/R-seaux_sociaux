@@ -1,10 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+include("../function/structure.php");
+html();
+?>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="Content-Language" content="fr" />
-        <link rel="stylesheet" href="../css/style-index.css" type="text/css" media="screen" />
+        <?php head_style_index(); ?>
         <title>Créer un compte</title>
     </head>
 
@@ -12,6 +11,7 @@
 <div class="login">
   <div class="login-apparence">
     <div class="titre">
+      <img class="logo-index" src="/photos/icon/logo.png"></img>
       <h1>Créer un compte</h1>
     </div>
     <div class="login-form">
@@ -43,13 +43,8 @@
         <a class="pass_perdu button_lien" href="admin.php">Retour</a>
         </div>
       </div>
-<noscript>
-  <div id="erreur">
-    <b>Votre navigateur ne prend pas en charge JavaScript!</b>
-       Veuillez activer JavaScript afin de profiter pleinement du site.
-  </div>
-</noscript>
 
+	<?php erreur(); ?>
 <?php
 if(isset($_POST['Envoyer'])){
     //si pseudo vide
@@ -98,13 +93,13 @@ if(isset($_POST['Envoyer'])){
 		//date du jour
 		$date=date("Y-m-d");
 			// on enregistre les données
-			$insert = mysql_query("INSERT INTO LOGIN
-        VALUES ( '', '".mysql_real_escape_string(stripcslashes(utf8_decode($_POST['pseudo'])))."',
-          '".mysql_real_escape_string(stripcslashes(utf8_decode($_POST['motdepass'])))."',
-          '".mysql_real_escape_string(stripcslashes($_POST['email']))."',
-          '".mysql_real_escape_string('0')."',
-          '".mysql_real_escape_string('0')."',
-          '".mysql_real_escape_string($date)."' ) ");
+      $insert = mysql_query("INSERT INTO LOGIN (id, pseudo, pass, email, valide, statut, date)
+            VALUES ( '', '".mysql_real_escape_string(utf8_decode($_POST['pseudo']))."',
+             '".mysql_real_escape_string(utf8_decode($_POST['motdepass']))."',
+             '".mysql_real_escape_string($_POST['email'])."',
+             '".mysql_real_escape_string('0')."',
+             '".mysql_real_escape_string('0')."',
+             '".mysql_real_escape_string($date)."' ) ");
 			//Si il y a une erreur
 			if (!$insert) {
 				die('Requête invalide : ' . mysql_error());

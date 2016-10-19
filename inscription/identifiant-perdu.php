@@ -1,15 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="fr" />
-<title>Identifiant perdu</title>
-<link rel="stylesheet" href="../css/style-index.css" type="text/css" media="screen" />
+<?php
+  include("../function/structure.php");
+  html();
+?>
+
+  <head>
+    <?php head_style_index(); ?>
+    <title>Identifiant perdu</title>
+  </head>
+
 <body>
   <div class="login">
     <div class="login-apparence">
       <div class="titre">
+        <img class="logo-index" src="/photos/icon/logo.png"></img>
         <h1>Identifiant-Perdu</h1>
       </div>
       <div class="login-form">
@@ -29,12 +32,7 @@
           </div>
         </div>
 
-  <noscript>
-    <div id="erreur">
-      <b>Votre navigateur ne prend pas en charge JavaScript!</b>
-         Veuillez activer JavaScript afin de profiter pleinement du site.
-    </div>
-  </noscript>
+<?php erreur(); ?>
   </div>
 
 

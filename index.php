@@ -1,28 +1,32 @@
 <?php
+include("bdd/connexion_bdd.php");
+connexion_bd();
 //On créer des sessions et pour que ça fonctionne, il faut en déclarer l'ouverture.
 session_start();
 //destruction de la session
 if(isset($_GET['dec']) && $_GET['dec']=="close"){
     unset($_SESSION['pseudo']);
     unset($_SESSION['pass']);
+    $modif_co = mysql_query("UPDATE amis SET connect= '0' WHERE IdLog='".mysql_real_escape_string($_SESSION['id'])."'");
+    if (!$modif_co) {
+        die('Requête invalide : ' . mysql_error());
+        }
 }
+include("function/structure.php");
+html();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-    		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    		<meta http-equiv="Content-Language" content="fr" />
-        <link rel="icon" type="image/png" href="/auth-photos/icon.jpg" />
-        <link class="css-pc" rel="stylesheet" href="../css/style-index.css" type="text/css" media="screen" />
-    		<title>Authentification</title>
-    </head>
+<head>
+  <?php head_style_index(); ?>
+  <title>Authentification</title>
+
+</head>
 
 <body>
 <!-- affiche le cadre -->
 <div class="login">
   <div class="login-apparence">
     <div class="titre">
+      <img class="logo-index" src="/photos/icon/logo.png"></img>
       <h1>Authentification</h1>
     </div>
 
@@ -48,14 +52,8 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
         <a class="button_tel button_effacer button_lien" href="../inscription/creer-compte.php">Créer un compte</a>
     </div>
   </div>
-
 <!-- message si le javascript tourne pas -->
-		<noscript>
-      <div id="erreur">
-        <b>Votre navigateur ne prend pas en charge JavaScript!</b>
-           Veuillez activer JavaScript afin de profiter pleinement du site.
-      </div>
-    </noscript>
+		<?php erreur(); ?>
 </div>
 <!-- fin -->
 
@@ -77,8 +75,6 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
       //l'utilisateur existe
       //si ok
       else{
-          include("bdd/connexion_bdd.php");
-          connexion_bd();
           //On selectionne les données
           $index = mysql_query("SELECT id,pseudo,pass,valide FROM LOGIN WHERE
             pseudo='".mysql_real_escape_string(stripcslashes(utf8_decode($_POST['pseudo'])))."'
@@ -96,7 +92,7 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
             		//si le compte na pas été validé
             		if($result['valide']==0){
             			echo '<div id="erreur">Vous n\'avez pas validé votre inscription!<br/>»
-                  <a href="valider-inscription.php?id='.$result['id'].'">
+                  <a href="inscription/valider-inscription.php?id='.$result['id'].'">
                   Valider votre inscription</a></div>';
 
             		}
@@ -113,9 +109,10 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
                 $_SESSION['pseudo'] = utf8_decode($_POST['pseudo']);
                 $_SESSION['pass'] = utf8_decode($_POST['motdepass']);
                 $id=$result['id'];
+                $modif = mysql_query("UPDATE amis SET connect= '1' WHERE IdLog='".mysql_real_escape_string($id)."'");
                 //on redirige avec une url crypther
                 $hachage = $id;
-                $URL_NEWS = "../general/user.php?id=".$hachage;
+                $URL_NEWS = "../user/user.php?id=".$hachage;
                 header("location:".$URL_NEWS);
                 }
             }
@@ -124,23 +121,7 @@ if(isset($_GET['dec']) && $_GET['dec']=="close"){
     }
 }
 //Formation des URL pour envoyer des paramètres
-if(isset($_GET['conf']) && $_GET['conf']=="ok"){
-echo '<div id="ok">Inscription réussit. Un message vous a été envoyé sur votre boîte email.
-Merci de cliquer sur le lien présent dans celui-ci pour valider votre inscription.</div>';
-}
-if(isset($_GET['valide']) && $_GET['valide']=="ok"){
-echo '<div id="ok">Inscription validé avec succès! Vous pouvez vous identifier.</div>';
-}
-if(isset($_GET['recup']) && $_GET['recup']=="ok"){
-echo '<div id="ok">Vos identifiants ont été envoyé sur votre boite email.</div>';
-}
-if(isset($_GET['session']) && $_GET['session']=="new"){
-echo '<div id="ok">Suite à la modification de votre profil,
-vous devez saisir vos nouvelles données.</div>';
-}
-if(isset($_GET['ban']) && $_GET['ban']=="ok"){
-echo '<div id="erreur">Votre compte a été black-listé!</div>';
-}
+formation_url()
 ?>
 
 	</body>
